@@ -8,13 +8,26 @@
   >
     <div class="logo-container-logo">
       <img src="../../../public/image/banner1/bannerToplogo.webp" />
+      <div class="logo-text">
+        <img src="../../../public/image/banner1/moreIPButton.png">
+      </div>
     </div>
+    <div class="login-container-logo">
+      <img src="../../../public/image/banner1/login.webp">
+      <!-- 有个头像 -->
+       <div class="login-welcome-2023">欢迎登录</div>
+    </div>
+    <div class="download-button-2023">
+      <img src="../../../public/image/banner1/downloadButtonBG.webp">
+      <div class="download-word-2023">查看攻略</div>
+    </div>
+    <banerTopContent></banerTopContent>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-
+import banerTopContent from '../bannerTopContent/bannerTopContent.vue'
 const scale = ref(1)
 const left = ref(0)
 
@@ -47,16 +60,14 @@ onBeforeUnmount(() => {
   width: 1600px;
   min-height: 80px;
   padding-top: 80px;
-
   box-sizing: border-box;
   transform-origin: 0% 0%;
   z-index: 100;
-  pointer-events: none;
 }
 
 .logo-container-logo {
   position: absolute;
-  left: 45px;
+  left:27px;
   top: 10px;
   cursor: pointer;
   pointer-events: auto;
@@ -65,5 +76,58 @@ onBeforeUnmount(() => {
     overflow-clip-margin: content-box;
     overflow: clip;
   }
+  .logo-text{
+    position: absolute;
+    left: 173px;
+    top: 10px;
+    transform: scale(0.8, 0.8);
+    img{
+      width:22px;
+      height:15px;
+    }
+  }
+
 }
+.login-container-logo{
+    position: absolute;
+    right: 90px;
+    top: 20px;
+    img{
+      width:30px;
+      height:25px;
+    }
+    .login-welcome-2023{
+      position: absolute;
+      color: rgb(255, 255, 255);
+      left: 40px;
+      top: 3px;
+      font-size: 14px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+}
+.download-button-2023{
+    position: absolute;
+    /* display: none; */
+    right: 135px;
+    top: 19px;
+    cursor: pointer;
+    user-select: none;
+      img{
+      width: 100px;
+      height: 30px;
+    }
+    .download-word-2023{
+    position: absolute;
+    width: 124px;
+    height: 38px;
+    left: -9px;
+    top: -4px;
+    line-height: 38px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #30210d;
+    text-align: center;
+    }
+    }
 </style>
