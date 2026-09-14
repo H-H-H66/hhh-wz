@@ -9,7 +9,8 @@
   >
     <el-carousel-item class="itemone-container">
       <div class="banner-inner" :style="innerStyle">
-        <img src="../../../public/image/banner1/bg-banner1.webp" />
+        <img src="../../../public/image/banner1/bg-ClAKvwxK.webp" />
+          <bannerContent></bannerContent>
       </div>
     </el-carousel-item>
 
@@ -23,7 +24,7 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import bannerTop from '@/components/bannerTop/bannerTop.vue'
-
+import bannerContent from '@/components/bannerContent/bannerContent.vue'
 const carouselRef = ref(null)
 let isWheeling = false
 const scale = ref(1)

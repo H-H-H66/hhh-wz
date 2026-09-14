@@ -118,24 +118,113 @@
       </div>
     </el-tooltip>
 
-    <div class="menu1-2023 li-2023">
-      <div class="menu1-word-contianer-2023">
-        <div class="menu1-big-word-link-2023">王者文化</div>
-        <div class="menu1-small-word-2023">KINGDOM CULTURE</div>
+
+    <el-tooltip
+      class="box-item"
+      effect="dark"
+      placement="bottom"
+      popper-class="box-item-container"
+    >
+      <template #content>
+        <div class="box-item_li">
+          <div class="box_item_row"><span class="box_item_icon_slot"></span><span>共创研发陈列馆</span></div>
+          <div class="box_item_row"><span class="box_item_icon_slot"></span><span>王者荣耀天天向上</span></div>
+          <div class="box_item_row"><span class="box_item_icon_slot"></span><span>IP剧集观影站</span></div>
+        </div>
+      </template>
+      <div class="menu1-2023 li-2023">
+        <div class="menu1-word-contianer-2023">
+          <div class="menu1-big-word-link-2023">王者文化</div>
+          <div class="menu1-small-word-2023">KINGDOM CULTURE</div>
       </div>
     </div>
+    </el-tooltip>
+
+    <el-tooltip
+      class="box-item"
+      effect="dark"
+      placement="bottom"
+      popper-class="box-item-container"
+    >
+      <template #content>
+        <div class="box-item_li">
+          <div class="box_item_row">
+            <span class="box_item_icon_slot">
+              <img src="../../../public/image/banner1/hot.png" alt="" />
+            </span>
+            <span>体验服专区</span>
+          </div>
+          <div class="box_item_row">
+            <span class="box_item_icon_slot">
+              <img src="../../../public/image/banner1/hot.png" alt="" />
+            </span>
+            <span>高校认证</span>
+          </div>
+          <div class="box_item_row">
+            <span class="box_item_icon_slot"></span>
+            <span>腾讯游戏防沉迷</span>
+          </div>
+          <div class="box_item_row">
+            <span class="box_item_icon_slot"></span>
+            <span>成长守护平台</span>
+          </div>
+           <div class="box_item_row">
+            <span class="box_item_icon_slot"></span>
+            <span>对局环境情报站</span>
+          </div>
+           <div class="box_item_row">
+            <span class="box_item_icon_slot"></span>
+            <span>客服专区</span>
+          </div>
+           <div class="box_item_row">
+            <span class="box_item_icon_slot"></span>
+            <span>礼包兑换</span>
+          </div>
+           <div class="box_item_row">
+            <span class="box_item_icon_slot"></span>
+            <span>自助服务</span>
+          </div>
+          <div class="box_item_row">
+            <span class="box_item_icon_slot"></span>
+            <span>商户特权</span>
+          </div>
+          <div class="box_item_row">
+            <span class="box_item_icon_slot">
+              <img src="../../../public/image/banner1/new.png" alt="" />
+            </span>
+            <span>手语打法参考</span>
+          </div>
+        </div>
+      </template>
     <div class="menu1-2023 li-2023">
       <div class="menu1-word-contianer-2023">
         <div class="menu1-big-word-link-2023">玩家支持</div>
         <div class="menu1-small-word-2023">PLAYER SUPPORT</div>
       </div>
     </div>
+    </el-tooltip>
+
+
+    <el-tooltip
+      class="box-item"
+      effect="dark"
+      placement="bottom"
+      popper-class="box-item-container"
+    >
+      <template #content>
+        <div class="box-item_li">
+          <div class="box_item_row"><span class="box_item_icon_slot"></span><span>共创研发陈列馆</span></div>
+          <div class="box_item_row"><span class="box_item_icon_slot"></span><span>王者荣耀天天向上</span></div>
+          <div class="box_item_row"><span class="box_item_icon_slot"></span><span>IP剧集观影站</span></div>
+        </div>
+      </template>
     <div class="menu1-2023 li-2023">
       <div class="menu1-word-contianer-2023">
         <div class="menu1-big-word-link-2023">王者中心</div>
         <div class="menu1-small-word-2023">KINGDOM CENTER</div>
       </div>
     </div>
+    </el-tooltip>
   </div>
 </template>
 
@@ -143,7 +232,7 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .menu-container-2023 {
   left: 300px;
   position: absolute;
