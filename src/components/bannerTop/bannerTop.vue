@@ -6,7 +6,7 @@
       left: `${left}px`,
     }"
   >
-    <div class="logo-container-logo">
+    <div class="logo-container-logo" @click="drawerVisibles">
       <img src="../../../public/image/banner1/bannerToplogo.webp" />
       <div class="logo-text">
         <img src="../../../public/image/banner1/moreIPButton.png">
@@ -22,15 +22,17 @@
       <div class="download-word-2023">查看攻略</div>
     </div>
     <banerTopContent></banerTopContent>
+    <DrawerBanner v-model:drawerVisible="drawerVisible"></DrawerBanner>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import banerTopContent from '../bannerTopContent/bannerTopContent.vue'
+import DrawerBanner from '@/components/drawerbanner1/DrawerBanner.vue'
 const scale = ref(1)
 const left = ref(0)
-
+const drawerVisible = ref(false)
 const DESIGN_W = 1600
 const DESIGN_H = 900
 
@@ -42,7 +44,10 @@ function updateLayout() {
   scale.value = scaleVal
   left.value = (w - DESIGN_W * scaleVal) / 2
 }
-
+//点击打开抽屉
+const drawerVisibles = ()=>{
+  drawerVisible.value = true;
+}
 onMounted(() => {
   updateLayout()
   window.addEventListener('resize', updateLayout)

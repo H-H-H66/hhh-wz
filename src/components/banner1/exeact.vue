@@ -11,6 +11,7 @@
       <div class="banner-inner" :style="innerStyle">
         <img src="../../../public/image/banner1/bg-ClAKvwxK.webp" />
           <bannerContent></bannerContent>
+          <banContNav></banContNav>
       </div>
     </el-carousel-item>
 
@@ -25,6 +26,7 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import bannerTop from '@/components/bannerTop/bannerTop.vue'
 import bannerContent from '@/components/bannerContent/bannerContent.vue'
+import banContNav from '@/components/bannerContent/banContbottom/banContNav.vue'
 const carouselRef = ref(null)
 let isWheeling = false
 const scale = ref(1)
