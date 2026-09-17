@@ -9,15 +9,15 @@
   >
     <el-carousel-item class="itemone-container">
       <div class="banner-inner" :style="innerStyle">
-        <img src="../../../public/image/banner1/bg-ClAKvwxK.webp" />
-          <bannerContent></bannerContent>
-          <banContNav></banContNav>
+        <img src="/image/banner1/bg-ClAKvwxK.webp" alt="" />
+        <bannerContent></bannerContent>
+        <banContNav></banContNav>
       </div>
     </el-carousel-item>
 
     <el-carousel-item class="itemone-container">
       <div class="banner-inner" :style="innerStyle">
-        <img src="../../../public/image/banner1/bg-banner1.webp" />
+        <img src="/image/banner1/bg-banner1.webp" alt="" />
       </div>
     </el-carousel-item>
   </el-carousel>
@@ -27,13 +27,13 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import bannerTop from '@/components/bannerTop/bannerTop.vue'
 import bannerContent from '@/components/bannerContent/bannerContent.vue'
 import banContNav from '@/components/bannerContent/banContbottom/banContNav.vue'
+
 const carouselRef = ref(null)
 let isWheeling = false
 const scale = ref(1)
 const offsetX = ref(0)
 const offsetY = ref(0)
 
-// 设计稿尺寸
 const DESIGN_W = 1920
 const DESIGN_H = 900
 
@@ -47,31 +47,21 @@ const innerStyle = computed(() => ({
 function updateLayout() {
   const w = window.innerWidth
   const h = window.innerHeight
-  // 始终按高度缩放，保证拉高/拉矮窗口时画面会变；垂直铺满，水平居中裁切
   const scaleVal = h / DESIGN_H
   scale.value = scaleVal
   offsetX.value = (w - DESIGN_W * scaleVal) / 2
   offsetY.value = 0
 }
 
-onMounted(() => {
-  updateLayout()
-  window.addEventListener('resize', updateLayout)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateLayout)
-})
-
 function handleWheel(e) {
   e.preventDefault()
-  if (isWheeling) return
+  if (isWheeling || !carouselRef.value) return
   isWheeling = true
 
   if (e.deltaY > 0) {
-    carouselRef.value?.next()
+    carouselRef.value.next()
   } else {
-    carouselRef.value?.prev()
+    carouselRef.value.prev()
   }
 
   setTimeout(() => {
@@ -79,14 +69,14 @@ function handleWheel(e) {
   }, 600)
 }
 
-// 修改为两个 onMounted 分开写，或者合并到一起（这里我合并到一个 onMounted 里）
-// 注意：如果直接用 window.addEventListener('wheel', ...) 只要在 onMounted 里写一次即可
 onMounted(() => {
-  // 必须加 passive: false，否则 preventDefault 会失效
+  updateLayout()
+  window.addEventListener('resize', updateLayout)
   window.addEventListener('wheel', handleWheel, { passive: false })
 })
 
 onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateLayout)
   window.removeEventListener('wheel', handleWheel)
 })
 </script>
@@ -108,7 +98,7 @@ onBeforeUnmount(() => {
   object-fit: cover;
   display: block;
 }
-/* 原代码 n+1 和 2n 的背景色可以删掉，避免露出来 */
+
 :deep(.el-carousel__indicators--right) {
   display: none;
 }

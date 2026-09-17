@@ -83,7 +83,10 @@
 <script setup>
 import { nextTick, ref, watch } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue'
-
+import {useRouter} from 'vue-router'
+import {userUserStore} from "@/stores/modules/user"
+const router=useRouter()
+const userStore=userUserStore()
 const form = ref()
 const isRegister = ref(false)
 const remember = ref(false)
@@ -144,6 +147,21 @@ const onSubmit = async () => {
     localStorage.setItem('userinfo',JSON.stringify(formModel.value))
     ElMessage.success("成功注册")
     isRegister.value=false
+  }
+  else{
+    await form.value.validate()
+    const userinfo=localStorage.getItem('userinfo')
+    if(userinfo){
+      const userinfoObj=JSON.parse(userinfo)
+      if(userinfoObj.username===formModel.value.username&&userinfoObj.password===formModel.value.password){
+        ElMessage.success("登录成功")
+        userStore.setUserInfo(userinfoObj)
+        router.push('/')
+      }
+      else{
+        ElMessage.error("用户名或密码错误")
+      }
+    }
 
   }
 }
@@ -183,12 +201,12 @@ const onSubmit = async () => {
 }
 
 .bg-login {
-  background-image: url('/image/login/Loginimage.png');
+  background-image: url('/image/login/Loginimage.webp');
   opacity: 1;
 }
 
 .bg-register {
-  background-image: url('/image/login/Rejectimage.png');
+  background-image: url('/image/login/Rejectimage.webp');
 }
 
 .login-page.is-register {

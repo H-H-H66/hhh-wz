@@ -16,7 +16,7 @@ const dataImg = ref(
     {src:'/public/image/banner1/lb.jpg',alt:'图片2'},
     {src:'/public/image/banner1/kt.jpg',alt:'图片3'},
     {src:'/public/image/banner1/sh.jpg',alt:'图片4'},
-    {src:'/public/image/banner1/wx.png',alt:'图片5'},
+    {src:'/image/banner1/wx.webp',alt:'图片5'},
   ]
 )
 </script>

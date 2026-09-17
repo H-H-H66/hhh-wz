@@ -15,7 +15,7 @@
     <div class="login-container-logo">
       <img src="/public/image/banner1/deavator.jpg">
       <!-- 有个头像 -->
-       <div class="login-welcome-2023" @click="GotoLogin">欢迎登录</div>
+       <div class="login-welcome-2023" @click="GotoLogin">{{userStoreInfo.username || 欢迎登录}}</div>
     </div>
     <div class="download-button-2023">
       <img src="../../../public/image/banner1/downloadButtonBG.webp">
@@ -31,6 +31,8 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import banerTopContent from '../bannerTopContent/bannerTopContent.vue'
 import DrawerBanner from '@/components/drawerbanner1/DrawerBanner.vue'
 import { useRouter } from 'vue-router'
+import {userUserStore} from "@/stores/modules/user";
+const userStoreInfo = userUserStore();
 const router = useRouter()
 const scale = ref(1)
 const left = ref(0)
@@ -53,6 +55,7 @@ const drawerVisibles = ()=>{
 onMounted(() => {
   updateLayout()
   window.addEventListener('resize', updateLayout)
+  console.log('mounted',userStoreInfo.username)
 })
 
 onBeforeUnmount(() => {
