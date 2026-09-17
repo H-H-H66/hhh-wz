@@ -1,9 +1,8 @@
 <script setup>
-import exeact from "@/components/banner1/exeact.vue"
 </script>
 
 <template>
- <exeact></exeact>
+  <router-view />
 </template>
 
 <style>

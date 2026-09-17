@@ -13,9 +13,9 @@
       </div>
     </div>
     <div class="login-container-logo">
-      <img src="../../../public/image/banner1/login.webp">
+      <img src="/public/image/banner1/deavator.jpg">
       <!-- 有个头像 -->
-       <div class="login-welcome-2023">欢迎登录</div>
+       <div class="login-welcome-2023" @click="GotoLogin">欢迎登录</div>
     </div>
     <div class="download-button-2023">
       <img src="../../../public/image/banner1/downloadButtonBG.webp">
@@ -30,6 +30,8 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import banerTopContent from '../bannerTopContent/bannerTopContent.vue'
 import DrawerBanner from '@/components/drawerbanner1/DrawerBanner.vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const scale = ref(1)
 const left = ref(0)
 const drawerVisible = ref(false)
@@ -56,6 +58,10 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateLayout)
 })
+//跳转登录页面
+const GotoLogin = ()=>{
+  router.push('/login')
+}
 </script>
 
 <style scoped>
@@ -99,7 +105,7 @@ onBeforeUnmount(() => {
     top: 20px;
     img{
       width:30px;
-      height:25px;
+      height:30px;
     }
     .login-welcome-2023{
       position: absolute;
