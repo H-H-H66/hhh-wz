@@ -14,11 +14,7 @@ return {username,password,repassword,setUserInfo}
 },
 {
   persist: {
-      key: 'mjtv-userinfo-store',
-      paths: [
-        'username',
-        'password',
-        'repassword'
-      ],
-    },
+    key: 'mjtv-userinfo-store',
+    pick: ['username', 'password', 'repassword'],
+  },
 })

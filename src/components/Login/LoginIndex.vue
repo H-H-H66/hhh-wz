@@ -148,7 +148,7 @@ const onSubmit = async () => {
     ElMessage.success("成功注册")
     isRegister.value=false
   }
-  else{
+  else if(!isRegister.value){
     await form.value.validate()
     const userinfo=localStorage.getItem('userinfo')
     if(userinfo){
@@ -158,11 +158,17 @@ const onSubmit = async () => {
         userStore.setUserInfo(userinfoObj)
         router.push('/')
       }
-      else{
+    } 
+    else if(userinfo===null){
+      ElMessage.error("用户不存在")
+    }
+    else{
         ElMessage.error("用户名或密码错误")
       }
-    }
 
+  }
+  else{
+    ElMessage.error("请选择登录/注册")
   }
 }
 </script>

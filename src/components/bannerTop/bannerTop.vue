@@ -15,7 +15,8 @@
     <div class="login-container-logo">
       <img src="/public/image/banner1/deavator.jpg">
       <!-- 有个头像 -->
-       <div class="login-welcome-2023" @click="GotoLogin">{{userStoreInfo.username || 欢迎登录}}</div>
+       <div class="login-welcome-2023" @click="GotoLogin" v-if="!userStoreInfo.username">欢迎登录</div>
+       <div class="login-welcome-2023" v-else>{{userStoreInfo.username}}</div>
     </div>
     <div class="download-button-2023">
       <img src="../../../public/image/banner1/downloadButtonBG.webp">
