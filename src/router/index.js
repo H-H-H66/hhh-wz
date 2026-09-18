@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/components/Login/LoginIndex.vue'
 import Home from '@/components/banner1/exeact.vue'
-
+import UserEdit from '@/components/userEdit/userEdit.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -18,6 +18,11 @@ const router = createRouter({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path:'/userEdit',
+      name:'UserEdit',
+      component: UserEdit
     }
   ],
 })

@@ -8,9 +8,15 @@ export const userUserStore = defineStore('user',()=>{
    username.value = info.username
    password.value = info.password
    repassword.value = info.repassword
-}
+  }
 
-return {username,password,repassword,setUserInfo}
+  const clearUserInfo = () => {
+    username.value = ''
+    password.value = ''
+    repassword.value = ''
+  }
+
+return {username,password,repassword,setUserInfo,clearUserInfo}
 },
 {
   persist: {

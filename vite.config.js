@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
+import path from 'node:path'
 
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -6,6 +7,11 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+
+const pathSrc = path.resolve(__dirname, 'src')
+
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
@@ -16,10 +22,26 @@ export default defineConfig(({ mode }) => {
       // 与浏览器 Vue Devtools 扩展冲突时会导致异常，需要时再打开
       // vueDevTools(),
       AutoImport({
-        resolvers: [ElementPlusResolver()],
+        imports: ['vue'],
+        resolvers: [
+          ElementPlusResolver(),
+          IconsResolver({
+            prefix: 'Icon',
+          }),
+        ],
+        dts: path.resolve(pathSrc, 'auto-imports.d.ts'),
       }),
       Components({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [
+          ElementPlusResolver(),
+          IconsResolver({
+            enabledCollections: ['ep'],
+          }),
+        ],
+        dts: path.resolve(pathSrc, 'components.d.ts'),
+      }),
+      Icons({
+        autoInstall: true,
       }),
     ],
     resolve: {
