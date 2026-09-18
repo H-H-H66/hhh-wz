@@ -4,7 +4,7 @@
       <h2>基本资料</h2>
       <p>管理你的账号信息与登录凭证</p>
     </div>
-
+    <div class="cardList">
     <div class="profile-card">
       <div class="avatar-block">
         <img class="avatar" :src="userStoreInfo.avatar || defaultAvatar" alt="avatar" />
@@ -63,6 +63,110 @@
         </div>
       </el-form>
     </div>
+    <div class="card-right">
+      <div class="detail-head">
+        <h2>资料概览</h2>
+      </div>
+      <div class="overview-top">
+        <div class="resources">
+          <div class="detail-item">
+            <div class="detail-label">账号注册</div>
+            <div class="detail-value">2026.09</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">最近登录</div>
+            <div class="detail-value">今天</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">绑定手机</div>
+            <div class="detail-value">未绑定</div>
+          </div>
+        </div>
+        <div class="overview-user">
+          <img
+            class="overview-avatar"
+            :src="userStoreInfo.avatar || defaultAvatar"
+            alt="avatar"
+          />
+          <div class="overview-name">{{ userStoreInfo.username || '未登录' }}</div>
+          <div class="overview-status">
+            <span class="status-dot"></span>
+            <span>账号正常</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-bottom">
+        <div class="security-card">
+          <div class="security-icon">
+            <el-icon :size="28"><CircleCheckFilled /></el-icon>
+          </div>
+          <div class="security-body">
+            <div class="security-title-row">
+              <span class="security-title">安全等级：高</span>
+              <span class="security-score">92</span>
+            </div>
+            <div class="security-bar">
+              <div class="security-bar-inner" style="width: 92%"></div>
+            </div>
+            <p class="security-tip">已开启登录保护，建议继续完善手机绑定</p>
+          </div>
+        </div>
+        <div class="security-actions">
+          <button type="button" class="ghost-action">查看账号安全</button>
+          <button type="button" class="ghost-action">设置隐私权限</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-side">
+      <div class="detail-head">
+        <h2>近期动态</h2>
+      </div>
+      <div class="activity-box">
+        <ul class="activity-list">
+          <li class="activity-item">
+            <span class="activity-dot is-gold"></span>
+            <div class="activity-body">
+              <p class="activity-title">更新了个人头像</p>
+              <p class="activity-time">今天 15:32</p>
+            </div>
+          </li>
+          <li class="activity-item">
+            <span class="activity-dot is-blue"></span>
+            <div class="activity-body">
+              <p class="activity-title">修改了账号简介</p>
+              <p class="activity-time">今天 14:08</p>
+            </div>
+          </li>
+          <li class="activity-item">
+            <span class="activity-dot is-green"></span>
+            <div class="activity-body">
+              <p class="activity-title">登录成功 · 本机</p>
+              <p class="activity-time">今天 09:20</p>
+            </div>
+          </li>
+          <li class="activity-item">
+            <span class="activity-dot is-gray"></span>
+            <div class="activity-body">
+              <p class="activity-title">账号注册完成</p>
+              <p class="activity-time">2026.09.18</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="side-tips-group">
+        <div class="side-tips is-warn">
+          <p class="tips-title">安全提醒</p>
+          <p class="tips-text">检测到尚未绑定手机，建议尽快完成验证以保护账号安全。</p>
+        </div>
+        <div class="side-tips">
+          <p class="tips-title">小提示</p>
+          <p class="tips-text">绑定手机后可提升安全等级，并开启异地登录提醒。</p>
+        </div>
+      </div>
+    </div>
+    </div>
   </section>
   <AvatorCoppy  
   v-model="cropVisible"
@@ -78,7 +182,7 @@
 <script setup>
 import { reactive } from 'vue'
 import { userUserStore } from '@/stores/modules/user'
-import {Guide} from '@element-plus/icons-vue'
+import {Guide, CircleCheckFilled} from '@element-plus/icons-vue'
 import AvatorCoppy from './AvatorCoppy.vue'
 const cropVisible = ref(false)
 const cropFile = ref(null)
@@ -163,6 +267,7 @@ const rules = {
   border-radius: 12px;
   background: #fff;
   border: 1px solid #e8ebf0;
+  user-select: none;
 }
 
 .panel-head {
@@ -182,11 +287,365 @@ const rules = {
     color: #8b93a1;
   }
 }
-
-.profile-card {
-  max-width: 520px;
+.cardList {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
+.profile-card {
+  flex: 1 1 340px;
+  min-width: 300px;
+  max-width: 420px;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #e8ebf0;
+  background: #fff;
+  box-shadow:
+    0 6px 18px rgba(31, 36, 48, 0.08),
+    0 2px 6px rgba(31, 36, 48, 0.04);
+}
+
+.card-right {
+  flex: 1 1 360px;
+  min-width: 300px;
+  max-width: 480px;
+  padding: 16px 18px 18px;
+  border-radius: 12px;
+  border: 1px solid #e8ebf0;
+  background: #fff;
+  box-shadow:
+    0 6px 18px rgba(31, 36, 48, 0.08),
+    0 2px 6px rgba(31, 36, 48, 0.04);
+}
+
+.card-side {
+  flex: 1 1 260px;
+  min-width: 240px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 18px 18px;
+  border-radius: 12px;
+  border: 1px solid #e8ebf0;
+  background: #fff;
+  box-shadow:
+    0 6px 18px rgba(31, 36, 48, 0.08),
+    0 2px 6px rgba(31, 36, 48, 0.04);
+}
+
+.activity-box {
+  max-height: 220px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #eef0f4;
+  background: #fafbfc;
+  scrollbar-gutter: stable;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 999px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c9ced6;
+    border-radius: 999px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #aeb4bf;
+  }
+}
+
+.activity-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.activity-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-top: 6px;
+  border-radius: 50%;
+
+  &.is-gold {
+    background: #b8903e;
+  }
+  &.is-blue {
+    background: #3b82f6;
+  }
+  &.is-green {
+    background: #22a06b;
+  }
+  &.is-gray {
+    background: #9aa1ad;
+  }
+}
+
+.activity-body {
+  min-width: 0;
+}
+
+.activity-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2430;
+  line-height: 1.35;
+}
+
+.activity-time {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #9aa1ad;
+  line-height: 1.2;
+}
+
+.side-tips-group {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side-tips {
+  padding: 12px;
+  border-radius: 10px;
+  background: #f7f8fa;
+  border: 1px solid #eef0f4;
+
+  &.is-warn {
+    background: #fff8f0;
+    border-color: #f0e0c8;
+  }
+}
+
+.tips-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1f2430;
+}
+
+.tips-text {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: #7a8794;
+  line-height: 1.5;
+}
+
+.detail-head {
+  margin-bottom: 20px;
+
+  h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2430;
+  }
+}
+
+.overview-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.resources {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 8px 8px 0;
+}
+
+.detail-item {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.detail-label {
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: #8b93a1;
+  line-height: 1.2;
+}
+
+.detail-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2430;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.overview-user {
+  flex-shrink: 0;
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.overview-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 1px #e8ebf0, 0 6px 16px rgba(31, 36, 48, 0.08);
+}
+
+.overview-name {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1f2430;
+  line-height: 1.3;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.overview-status {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #5b6472;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.overview-bottom {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #eef0f4;
+}
+
+.security-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f3fbf6 0%, #f7f8fa 100%);
+  border: 1px solid #e3f2e8;
+}
+
+.security-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: #22a06b;
+  box-shadow: 0 2px 8px rgba(34, 160, 107, 0.12);
+}
+
+.security-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.security-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.security-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f2430;
+}
+
+.security-score {
+  font-size: 18px;
+  font-weight: 700;
+  color: #22a06b;
+}
+
+.security-bar {
+  margin-top: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #e6eee9;
+  overflow: hidden;
+}
+
+.security-bar-inner {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #3ecf8e, #22a06b);
+}
+
+.security-tip {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #7a8794;
+  line-height: 1.4;
+}
+
+.security-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.ghost-action {
+  appearance: none;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid #d7dbe3;
+  background: #fff;
+  color: #1f2430;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    background: #f5f7fa;
+    border-color: #c9a45d;
+    color: #8a6a22;
+  }
+}
 .jianjie {
   width: 100%;
 
@@ -307,6 +766,8 @@ const rules = {
 
 .form-actions {
   margin-top: 8px;
+  display: flex;
+  justify-content: center;
 }
 
 .save-btn {
