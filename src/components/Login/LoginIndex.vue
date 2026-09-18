@@ -145,6 +145,7 @@ const onSubmit = async () => {
   if(isRegister.value){
     await form.value.validate()
     localStorage.setItem('userinfo',JSON.stringify(formModel.value))
+    userStore.registerNewUser(formModel.value.username)
     ElMessage.success("成功注册")
     isRegister.value=false
   }
@@ -158,13 +159,13 @@ const onSubmit = async () => {
         userStore.setUserInfo(userinfoObj)
         router.push('/')
       }
+    else{
+        ElMessage.error("用户名或密码错误")
+      }
     } 
     else if(userinfo===null){
       ElMessage.error("用户不存在")
     }
-    else{
-        ElMessage.error("用户名或密码错误")
-      }
 
   }
   else{

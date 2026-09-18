@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="login-container-logo">
-      <img src="/public/image/banner1/deavator.jpg">
+      <img :src="userStoreInfo.avatar || defaultAvator">
       <!-- 有个头像 -->
        <div class="login-welcome-2023" @click="GotoLogin" v-if="!userStoreInfo.username">欢迎登录</div>
       <el-popover
@@ -64,6 +64,7 @@ const userStoreInfo = userUserStore();
 const router = useRouter()
 const scale = ref(1)
 const left = ref(0)
+const defaultAvator = '/image/banner1/deavator.jpg'
 const drawerVisible = ref(false)
 const DESIGN_W = 1600
 const DESIGN_H = 900
@@ -94,7 +95,7 @@ const GotoLogin = ()=>{
 }
 const goProfile = () => {
   // 个人中心页后续接入
-  router.push('/UserEdit')
+  router.push('/userEdit')
 }
 const logout = () => {
   userStoreInfo.clearUserInfo()
