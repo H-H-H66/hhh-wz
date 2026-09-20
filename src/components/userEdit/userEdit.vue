@@ -6,7 +6,7 @@
     <div class="page-body">
       <Header />
       <main class="page-main">
-        <Main />
+        <router-view></router-view>
       </main>
     </div>
   </div>
@@ -15,7 +15,7 @@
 <script setup>
 import Aside from './Aside.vue'
 import Header from './Header.vue'
-import Main from './Main.vue'
+// import Main from './profile.vue/index.js'
 </script>
 
 <style scoped>

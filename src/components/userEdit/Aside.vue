@@ -16,8 +16,8 @@
         :key="item.key"
         type="button"
         class="nav-item"
-        :class="{ active: activeKey === item.key }"
-        @click="activeKey = item.key"
+        :class="{ active: route.path === item.path }"
+        @click="GotoUserEdits(item.path)"
       >
         <el-icon :size="16"><component :is="item.icon" /></el-icon>
         <span>{{ item.label }}</span>
@@ -30,14 +30,21 @@
 import { ref } from 'vue'
 import { User, Lock, Bell } from '@element-plus/icons-vue'
 import {userUserStore} from '@/stores/modules/user'
+import {useRouter,useRoute} from 'vue-router'
 const userStore = userUserStore()
 const activeKey = ref('profile')
 const defaultAvator = '/image/banner1/deavator.jpg'
 const menus = [
-  { key: 'profile', label: '基本资料', icon: User },
-  { key: 'security', label: '账号安全', icon: Lock },
-  { key: 'notice', label: '消息通知', icon: Bell }
+  { key: 'profile', label: '基本资料', icon: User ,path:'/userEdit/profile'},
+  { key: 'security', label: '账号安全', icon: Lock,path:'/userEdit/securityEdit'},
+  { key: 'notice', label: '消息通知', icon: Bell,path:'/userEdit/noticeEdit' }
 ]
+//跳转路由
+const router = useRouter()
+const route = useRoute()
+const GotoUserEdits = (path) => {
+  router.push(path)
+}
 </script>
 
 <style scoped>
