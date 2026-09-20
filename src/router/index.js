@@ -5,6 +5,7 @@ import UserEdit from '@/components/userEdit/userEdit.vue'
 import securityEdit from "@/components/securityEdit/securityEdit.vue"
 import noticeEdit from "@/components/noticeEdit/noticeEdit.vue"
 import profile from "@/components/userEdit/profile.vue"
+import VersionZone from '@/view/VersionZone/VersionZone.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -31,20 +32,29 @@ const router = createRouter({
         {
           path:'profile',
           name:'Profile',
-          component:profile
+          component:profile,
+          meta:{title:'个人资料'}
         },
         {
           path:'securityEdit',
           name:'SecurityEdit',
-          component:securityEdit
+          component:securityEdit,
+          meta:{title:'安全设置'}
         },
         {
           path:'noticeEdit',
           name:'NoticeEdit',
-          component:noticeEdit
+          component:noticeEdit,
+          meta:{title:'消息设置'}
         }
       ]
 
+    },
+    {
+      path:'/VersionZone',
+      name:'VersionZone',
+      component:VersionZone,
+      meta:{title:'版本信息'}
     }
   ],
 })

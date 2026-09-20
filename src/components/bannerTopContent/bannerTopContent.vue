@@ -11,11 +11,12 @@
       class="box-item"
       effect="dark"
       placement="bottom"
+      :offset="tipOffset"
       popper-class="box-item-container"
     >
       <template #content>
         <div class="box-item_li">
-          <div class="box_item_row"><span class="box_item_icon_slot"></span><span>版本专区</span></div>
+          <div class="box_item_row" @click="GotoVersionZone({ name: 'VersionZone' })"><span class="box_item_icon_slot"></span><span>版本专区</span></div>
           <div class="box_item_row"><span class="box_item_icon_slot"></span><span>英雄资料</span></div>
           <div class="box_item_row"><span class="box_item_icon_slot"></span><span>爆料站</span></div>
           <div class="box_item_row"><span class="box_item_icon_slot"></span><span>游戏壁纸</span></div>
@@ -34,6 +35,7 @@
       class="box-item"
       effect="dark"
       placement="bottom"
+      :offset="tipOffset"
       popper-class="box-item-container"
     >
       <template #content>
@@ -60,6 +62,7 @@
       class="box-item"
       effect="dark"
       placement="bottom"
+      :offset="tipOffset"
       popper-class="box-item-container"
     >
       <template #content>
@@ -123,6 +126,7 @@
       class="box-item"
       effect="dark"
       placement="bottom"
+      :offset="tipOffset"
       popper-class="box-item-container"
     >
       <template #content>
@@ -144,6 +148,7 @@
       class="box-item"
       effect="dark"
       placement="bottom"
+      :offset="tipOffset"
       popper-class="box-item-container"
     >
       <template #content>
@@ -209,6 +214,7 @@
       class="box-item"
       effect="dark"
       placement="bottom"
+      :offset="tipOffset"
       popper-class="box-item-container"
     >
       <template #content>
@@ -229,7 +235,17 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
+const router = useRouter()
+const route = useRoute()
+const tipOffset = computed(() => (route.path === '/home' ? 8 : 0))
+
+const GotoVersionZone = (path) => {
+  const { href } = router.resolve(path)
+  window.open(href, '_blank')
+}
 </script>
 
 <style scoped lang="scss">
@@ -246,6 +262,14 @@
   min-width: 0;
   text-align: center;
   padding-top: 18px;
+  box-sizing: border-box;
+}
+.menu-container-2023 > .box-item,
+.menu-container-2023 > .el-tooltip {
+  display: flex;
+  align-items: center;
+  height: auto;
+  align-self: flex-start;
 }
 .menu1-word-contianer-2023 {
   color: #fff;
@@ -272,6 +296,7 @@
   padding: 6px 0 !important;
   text-align: left !important;
   background: rgba(0, 0, 0, 0.5) !important;
+  margin-top: 15px;
 }
 .box-item-container .box-item_li {
   text-align: left;
