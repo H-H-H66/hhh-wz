@@ -6,6 +6,7 @@ import securityEdit from "@/components/securityEdit/securityEdit.vue"
 import noticeEdit from "@/components/noticeEdit/noticeEdit.vue"
 import profile from "@/components/userEdit/profile.vue"
 import VersionZone from '@/view/VersionZone/VersionZone.vue'
+import Hreo from "@/view/HreoList/Hreo.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -55,6 +56,12 @@ const router = createRouter({
       name:'VersionZone',
       component:VersionZone,
       meta:{title:'版本信息'}
+    },
+    {
+      path:'/hero',
+      name:'Hero',
+      component:Hreo,
+      meta:{title:'英雄列表'}
     }
   ],
 })

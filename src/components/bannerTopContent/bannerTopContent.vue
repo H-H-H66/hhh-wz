@@ -2,7 +2,7 @@
   <div class="menu-container-2023">
     <div class="menu1-2023 li-2023">
       <div class="menu1-word-contianer-2023">
-        <div class="menu1-big-word-link-2023">首页</div>
+        <div class="menu1-big-word-link-2023" @click="GotoHome">首页</div>
         <div class="menu1-small-word-2023">HOME</div>
       </div>
     </div>
@@ -17,7 +17,7 @@
       <template #content>
         <div class="box-item_li">
           <div class="box_item_row" @click="GotoVersionZone({ name: 'VersionZone' })"><span class="box_item_icon_slot"></span><span>版本专区</span></div>
-          <div class="box_item_row"><span class="box_item_icon_slot"></span><span>英雄资料</span></div>
+          <div class="box_item_row" @click="GotoHero({ name: 'Hero' })"><span class="box_item_icon_slot"></span><span>英雄资料</span></div>
           <div class="box_item_row"><span class="box_item_icon_slot"></span><span>爆料站</span></div>
           <div class="box_item_row"><span class="box_item_icon_slot"></span><span>游戏壁纸</span></div>
           <div class="box_item_row"><span class="box_item_icon_slot"></span><span>世界观站</span></div>
@@ -241,8 +241,14 @@ import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
 const route = useRoute()
 const tipOffset = computed(() => (route.path === '/home' ? 8 : 0))
-
+const GotoHome = ()=>{
+  router.push('/home')
+}
 const GotoVersionZone = (path) => {
+  const { href } = router.resolve(path)
+  window.open(href, '_blank')
+}
+const GotoHero = (path) => {
   const { href } = router.resolve(path)
   window.open(href, '_blank')
 }

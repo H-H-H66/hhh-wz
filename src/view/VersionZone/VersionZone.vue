@@ -2,27 +2,10 @@
   <div class="VersionZone">
     <div class="page-scroll">
       <banner-top />
-      <div class="content">
-        <img
-          src="/public/image/VersionZone/bannerImage.webp"
-          class="content-img"
-          alt=""
-        />
-        <img
-          src="/public/image/VersionZone/detailButton.webp"
-          class="content-button"
-          alt=""
-        />
-      </div>
+     <bannerList></bannerList>
       <div class="content-Top">
         <div class="content-bottom">
-          <div class="breadcrumbs">
-            <el-icon style="margin-right: 10px"><WindPower /></el-icon>
-            <el-breadcrumb :separator-icon="ArrowRight">
-              <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-              <el-breadcrumb-item>版本更新说明</el-breadcrumb-item>
-            </el-breadcrumb>
-          </div>
+         <breadcrumb></breadcrumb>
           <ul class="list">
             <li>
               <div class="banner_bd">
@@ -91,7 +74,8 @@
 
 <script setup>
 import bannerTop from '@/components/bannerTop/bannerTop.vue'
-import { WindPower, ArrowRight } from '@element-plus/icons-vue'
+import bannerList from "@/components/bannerList/bannerList.vue"
+import breadcrumb from "@/components/breadcrumb/breadcrumb.vue"
 </script>
 
 <style scoped lang="scss">
@@ -106,25 +90,6 @@ import { WindPower, ArrowRight } from '@element-plus/icons-vue'
   overflow-x: hidden;
   overflow-y: auto;
 }
-
-.content {
-  position: relative;
-
-  .content-img {
-    display: block;
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-  }
-
-  .content-button {
-    position: absolute;
-    left: 105px;
-    top: 214px;
-    cursor: pointer;
-  }
-}
-
 .content-Top {
   margin-top: -5px;
   background-color: #f2efe6;
@@ -136,14 +101,6 @@ import { WindPower, ArrowRight } from '@element-plus/icons-vue'
   margin: 0 auto;
   padding-bottom: 55px;
   box-sizing: border-box;
-
-  .breadcrumbs {
-    display: flex;
-    align-items: center;
-    padding: 20px 0;
-    color: #666;
-    margin-bottom: 20px;
-  }
 
   ul {
     list-style: none;
