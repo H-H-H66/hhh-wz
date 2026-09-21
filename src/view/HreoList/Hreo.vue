@@ -64,25 +64,33 @@
               </div>
             </div>
             <div class="herolist-content">
-              <ul class="herolist clearfix">
-                <li>
-                  <div class="mingge">
+              <ul class="herolist">
+                <li v-for="item in filterHero" :key="item.id" :class="item.type">
+                  <!-- 命格双头像 -->
+                  <div v-if="item.type === 'pair'" class="mingge">
                     <div class="yhero">
                       <div class="gotoHero">
                         <div class="mask">
-                          <img src="" alt="孙悟空" />
+                          <img v-if="item.left.img" :src="item.left.img" :alt="item.left.name" />
                         </div>
-                        <p class="hero-name">孙悟空</p>
+                        <p class="hero-name">{{ item.left.name }}</p>
                       </div>
                     </div>
                     <div class="mghero">
                       <div class="gotoHero">
                         <div class="mask">
-                          <img src="" alt="心魔六耳" />
+                          <img v-if="item.right.img" :src="item.right.img" :alt="item.right.name" />
                         </div>
-                        <p class="hero-name">心魔六耳</p>
+                        <p class="hero-name">{{ item.right.name }}</p>
                       </div>
                     </div>
+                  </div>
+                  <!-- 普通单头像 -->
+                  <div v-else class="gotoHero single">
+                    <div class="mask">
+                      <img v-if="item.img" :src="item.img" :alt="item.name" />
+                    </div>
+                    <p class="hero-name">{{ item.name }}</p>
                   </div>
                 </li>
               </ul>
@@ -95,7 +103,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Search } from '@element-plus/icons-vue'
 import bannerTop from '@/components/bannerTop/bannerTop.vue'
 import bannerList from "@/components/bannerList/bannerList.vue"
@@ -134,16 +142,62 @@ const heroList = ref(
       text:'召唤师技能'
     }
   ]
-  )
-  const currentSelected = ref(1)
-  const select = (heros) => {
-    currentSelected.value = heros.id
-  }
-  const input = ref('')
-  const onSearch = () => {
-    // 后续接搜索逻辑
-    console.log('search:', input.value)
-  }
+)
+const currentSelected = ref(1)
+const select = (heros) => {
+  currentSelected.value = heros.id
+}
+const input = ref('')
+const keyword = ref('')
+const onSearch = () => {
+  // 后续接搜索逻辑
+  keyword.value=input.value.trim()
+}
+
+// job：职业标识，可多个。上面「游戏职业」按这个筛选
+const heroCards = ref([
+  {
+    id: 1,
+    type: 'pair',
+    left: { name: '孙悟空', img: '/image/hero/sw.jpg', jobs: ['assassin', 'warrior'] },
+    right: { name: '心魔六耳', img: '/image/hero/le.jpg', jobs: ['assassin', 'warrior'] },
+  },
+  { id: 2, type: 'single', name: '卢雅那', img: '/image/hero/yl.jpg', jobs: ['mage'] },
+  { id: 3, type: 'single', name: '元流之子(刺客)', img: '/image/hero/ylzz.jpg', jobs: ['assassin'] },
+  { id: 4, type: 'single', name: '大禹', img: '/image/hero/dy.jpg', jobs: ['warrior'] },
+  { id: 5, type: 'single', name: '元流之子(辅助)', img: '/image/hero/ylzzfz.jpg', jobs: ['support'] },
+  { id: 6, type: 'single', name: '萤', img: '/image/hero/ying.jpg', jobs: ['mage'] },
+  { id: 7, type: 'single', name: '孙权', img: '/image/hero/sq.jpg', jobs: ['tank', 'warrior'] },
+  { id: 8, type: 'single', name: '元流之子(射手)', img: '/image/hero/ylzzss.jpg', jobs: ['marksman'] },
+  { id: 9, type: 'single', name: '空空儿', img: '/image/hero/kkr.jpg', jobs: ['assassin'] },
+  { id: 10, type: 'single', name: '苍', img: '/image/hero/can.jpg', jobs: ['assassin'] },
+  { id: 11, type: 'single', name: '影', img: '/image/hero/zc.jpg', jobs: ['assassin'] },
+  { id: 12, type: 'single', name: '少司缘', img: '/image/hero/ssy.jpg', jobs: ['support'] },
+  { id: 13, type: 'single', name: '元流之子(坦克)', img: '/image/hero/ylzztk.png', jobs: ['tank'] },
+  { id: 14, type: 'single', name: '元流之子(法师)', img: '/image/hero/ylzzfs.png', jobs: ['mage'] },
+  { id: 15, type: 'single', name: '敖隐', img: '/image/hero/ab.jpg', jobs: ['warrior'] },
+  { id: 16, type: 'single', name: '大司命', img: '/image/hero/dsm.jpg', jobs: ['mage', 'support'] },
+  { id: 17, type: 'single', name: '云中君', img: '/image/hero/yzj.jpg', jobs: ['assassin', 'warrior'] },
+  { id: 18, type: 'single', name: '海诺', img: '/image/hero/hru.jpg', jobs: ['mage', 'support'] },
+  { id: 19, type: 'single', name: '朵莉亚', img: '/image/hero/dly.jpg', jobs: ['support'] },
+])
+const matchJob = (jobs)=>{
+ return jobValue.value ==='all' || jobs.includes(jobValue.value)
+}
+const matchName = (names)=>{
+  if(!keyword.value) return true
+  return names.some((name) => name.includes(keyword.value))
+}
+const filterHero = computed(()=>{
+ return heroCards.value.filter((item)=>{
+    if(item.type==='pair'){
+       return (
+        (matchJob(item.left.jobs) || matchJob(item.right.jobs)) && matchName([item.left.name, item.right.name])
+      )
+    }
+     return matchJob(item.jobs) && matchName([item.name])
+  })
+})
 </script>
 
 
@@ -223,7 +277,7 @@ ul, li {
     cursor: pointer;
 }
 .herolist-box{
-   margin-top:25px;
+  padding-top:25px;
   padding:35px 28px;
   border:2px solid #E8E8E8;
   border-top:0;
@@ -342,21 +396,31 @@ ul, li {
   .herolist-content{
     margin-top: 40px;
   }
-  .herolist-content ul{
-    overflow: hidden;
+  .herolist{
+    display: flex;
+    flex-wrap: wrap;
+    /* 统一间距：列间距 18px，行间距 34px */
+    gap: 34px 18px;
+    overflow: visible;
   }
-  .herolist-content li{
-    float: left;
-    margin: 0 24px 34px 0;
+  .herolist > li{
+    float: none;
+    margin: 0;
+    width: 90px;
+  }
+  /* 命格占两格宽 = 单卡*2 + 中间间隙0，整体对齐网格 */
+  .herolist > li.pair{
+    width: 198px; /* 90 + 18 + 90 */
   }
   .mingge{
     display: flex;
-    width: 204px;
+    width: 100%;
+    gap: 18px; /* 和单卡之间的间距一致 */
   }
   .yhero,
   .mghero{
-    width: 50%;
-    min-width: 0;
+    width: 90px;
+    flex: 0 0 90px;
   }
   .gotoHero{
     display: block;
@@ -366,18 +430,13 @@ ul, li {
   }
   .mask{
     position: relative;
+    width: 90px;
     height: 90px;
     overflow: hidden;
     border: 2px solid #258df2;
     background: #e8eef5;
     box-sizing: border-box;
-  }
-  .yhero .mask{
-    border-radius: 10px 0 0 10px;
-    border-right: none;
-  }
-  .mghero .mask{
-    border-radius: 0 10px 10px 0;
+    border-radius: 10px 0 10px 0;
   }
   .mask img{
     display: block;
@@ -385,12 +444,16 @@ ul, li {
     height: 100%;
     object-fit: cover;
   }
+  .single{
+    width: 90px;
+  }
   .hero-name{
     margin: 8px 0 0;
-    font-size: 13px;
-    line-height: 1.2;
+    font-size: 12px;
+    line-height: 1.3;
     color: #4b4b4b;
-    white-space: nowrap;
+    text-align: center;
+    word-break: break-all;
   }
   .gotoHero:hover .hero-name{
     color: #258df2;
