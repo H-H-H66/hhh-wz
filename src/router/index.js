@@ -7,6 +7,9 @@ import noticeEdit from "@/components/noticeEdit/noticeEdit.vue"
 import profile from "@/components/userEdit/profile.vue"
 import VersionZone from '@/view/VersionZone/VersionZone.vue'
 import Hreo from "@/view/HreoList/Hreo.vue"
+import HeroItem from "@/components/HeroItem/HeroItem.vue"
+import HeroSpell from "@/components/HeroSpell/HeroSpell.vue"
+import HeroList from "@/components/HeroList/HeroList.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -61,7 +64,27 @@ const router = createRouter({
       path:'/hero',
       name:'Hero',
       component:Hreo,
-      meta:{title:'英雄列表'}
+      redirect:'/hero/hero',
+      children:[
+        {
+          path:'hero',
+          name:'HeroList',
+          component: HeroList,
+          meta:{title:'英雄列表'}
+        },
+        {
+          path:'heroItem',
+          name:'HeroItem',
+          component:HeroItem,
+          meta:{title:'局内道具'}
+        },
+        {
+          path:'heroSpell',
+          name:'HeroSpell',
+          component:HeroSpell,
+          meta:{title:'召唤师技能'}
+        }
+      ]
     }
   ],
 })
