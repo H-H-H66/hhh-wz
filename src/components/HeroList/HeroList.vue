@@ -50,7 +50,6 @@
       <div class="herolist-content">
               <ul class="herolist">
                 <li v-for="item in filterHero" :key="item.id" :class="item.type">
-                 
                   <div v-if="item.type === 'pair'" class="mingge">
                     <div class="yhero">
                       <div class="gotoHero">
@@ -84,13 +83,12 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { Search } from '@element-plus/icons-vue'
-const filterValue = ref('all')
+const filterValue = ref('')
 const jobValue = ref('all')
 
 // 选项列表：只用来渲染，不要绑到 v-model
 const filterOptions = [
-  { value: 'all', label: '全部' },
-  { value: 'free', label: '免费英雄' },
+  { value: 'free', label: '本周免费' },
   { value: 'new', label: '新手推荐' },
 ]
 const jobOptions = [
@@ -109,7 +107,6 @@ const onSearch = () => {
   // 后续接搜索逻辑
   keyword.value=input.value.trim()
 }
-
 // job：职业标识，可多个。上面「游戏职业」按这个筛选
 const heroCards = ref([
   {
@@ -118,25 +115,36 @@ const heroCards = ref([
     left: { name: '孙悟空', img: '/image/hero/sw.jpg', jobs: ['assassin', 'warrior'] },
     right: { name: '心魔六耳', img: '/image/hero/le.jpg', jobs: ['assassin', 'warrior'] },
   },
-  { id: 2, type: 'single', name: '卢雅那', img: '/image/hero/yl.jpg', jobs: ['mage'] },
-  { id: 3, type: 'single', name: '元流之子(刺客)', img: '/image/hero/ylzz.jpg', jobs: ['assassin'] },
-  { id: 4, type: 'single', name: '大禹', img: '/image/hero/dy.jpg', jobs: ['warrior'] },
-  { id: 5, type: 'single', name: '元流之子(辅助)', img: '/image/hero/ylzzfz.jpg', jobs: ['support'] },
-  { id: 6, type: 'single', name: '影', img: '/image/hero/ying.jpg', jobs: ['mage'] },
+  { id: 2, type: 'single', name: '卢雅那', img: '/image/hero/yl.jpg', jobs: ['mage'],tags : [ 'free' ] },
+  { id: 3, type: 'single', name: '元流之子(刺客)', img: '/image/hero/ylzz.jpg', jobs: ['assassin'],tags : [ 'free' ]  },
+  { id: 4, type: 'single', name: '大禹', img: '/image/hero/dy.jpg', jobs: ['warrior'],tags:['new'] },
+  { id: 5, type: 'single', name: '元流之子(辅助)', img: '/image/hero/ylzzfz.jpg', jobs: ['support'],tags : [ 'free' ]  },
+  { id: 6, type: 'single', name: '影', img: '/image/hero/ying.jpg', jobs: ['mage'],tags:['new'] },
   { id: 7, type: 'single', name: '孙权', img: '/image/hero/sq.jpg', jobs: ['tank', 'warrior'] },
   { id: 8, type: 'single', name: '元流之子(射手)', img: '/image/hero/ylzzss.jpg', jobs: ['marksman'] },
   { id: 9, type: 'single', name: '空空儿', img: '/image/hero/kkr.jpg', jobs: ['assassin'] },
-  { id: 10, type: 'single', name: '苍', img: '/image/hero/can.jpg', jobs: ['assassin'] },
+  { id: 10, type: 'single', name: '苍', img: '/image/hero/can.jpg', jobs: ['assassin'],tags : [ 'free' ]  },
   { id: 11, type: 'single', name: '嗤姹', img: '/image/hero/zc.jpg', jobs: ['assassin'] },
-  { id: 12, type: 'single', name: '少司缘', img: '/image/hero/ssy.jpg', jobs: ['support'] },
-  { id: 13, type: 'single', name: '元流之子(坦克)', img: '/image/hero/ylzztk.png', jobs: ['tank'] },
-  { id: 14, type: 'single', name: '元流之子(法师)', img: '/image/hero/ylzzfs.png', jobs: ['mage'] },
-  { id: 15, type: 'single', name: '敖隐', img: '/image/hero/ab.jpg', jobs: ['warrior'] },
+  { id: 12, type: 'single', name: '少司缘', img: '/image/hero/ssy.jpg', jobs: ['support'],tags : [ 'free' ]  },
+  { id: 13, type: 'single', name: '元流之子(坦克)', img: '/image/hero/ylzztk.png', jobs: ['tank'],tags:['new'] },
+  { id: 14, type: 'single', name: '元流之子(法师)', img: '/image/hero/ylzzfs.png', jobs: ['mage'],tags:['new'] },
+  { id: 15, type: 'single', name: '敖隐', img: '/image/hero/ab.jpg', jobs: ['warrior'],tags:['new'] },
   { id: 16, type: 'single', name: '大司命', img: '/image/hero/dsm.jpg', jobs: ['mage', 'support'] },
   { id: 17, type: 'single', name: '云中君', img: '/image/hero/yzj.jpg', jobs: ['assassin', 'warrior'] },
   { id: 18, type: 'single', name: '海诺', img: '/image/hero/hru.jpg', jobs: ['mage', 'support'] },
   { id: 19, type: 'single', name: '朵莉亚', img: '/image/hero/dly.jpg', jobs: ['support'] },
 ])
+// 先根据上面“本周免费/新手推荐”决定数据源，再交给 filterHero 做职业+名称过滤
+// 注意：只 return 过滤后的新数组，千万不要给 heroCards.value 赋值，否则原始数据会被永久覆盖
+const baseList = computed(() => {
+  if (filterValue.value === 'free') {
+    return heroCards.value.filter((item) => item.tags?.includes('free'))
+  }
+  if (filterValue.value === 'new') {
+    return heroCards.value.filter((item) => item.tags?.includes('new'))
+  }
+  return heroCards.value
+})
 const matchJob = (jobs)=>{
  return jobValue.value ==='all' || jobs.includes(jobValue.value)
 }
@@ -145,7 +153,7 @@ const matchName = (names)=>{
   return names.some((name) => name.includes(keyword.value))
 }
 const filterHero = computed(()=>{
- return heroCards.value.filter((item)=>{
+ return  baseList.value.filter((item)=>{
     if(item.type==='pair'){
        return (
         (matchJob(item.left.jobs) || matchJob(item.right.jobs)) && matchName([item.left.name, item.right.name])

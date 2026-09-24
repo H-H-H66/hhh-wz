@@ -19,9 +19,9 @@
         </el-radio-group>
        </ul>
          <ul class="clearfix types-ms parent-type"  v-else-if="ModeType==='Various'">
-         <el-radio-group v-model="TypeList" class="radios-item">
+         <el-radio-group v-model="FilterList" class="radios-item">
           <el-radio   
-            v-for="item in TypeListOptions"
+            v-for="item in BreakoutOptions"
             :key="item.value"
             :value="item.value">{{item.label}}
           </el-radio>
@@ -87,7 +87,7 @@
             class="box-item"
             effect="dark"
             placement="top"
-            v-for="item in filteredList" :key="item.id"
+            v-for="item in BreakoutfilteredList" :key="item.id"
            >
            <template #content>
             <div class="item-tooltip">
@@ -96,8 +96,6 @@
               </div>
               <div class="tooltip-right">
                 <h3>{{ item.name }}</h3>
-                <p>售价：{{ item[ModeType].price }}</p>
-                <p>总价：{{ item[ModeType].totalPrice }}</p>
                 <p v-for="(attr, i) in item[ModeType].attributes" :key="i">{{ attr }}</p>
                 <p v-if="item[ModeType].unique" class="unique" v-for="(uniaue,i) in item[ModeType].unique" :key="i">
                   {{ uniaue }}
@@ -122,6 +120,7 @@ import { Search } from '@element-plus/icons-vue'
 const input = ref('')
 const ModeType = ref('Regular')
 const TypeList = ref('all')
+const FilterList = ref('all')
 const keyword = ref('')
 const onSearch = () => {
   // 后续接搜索逻辑
@@ -141,6 +140,12 @@ const TypeListOptions = [
   { value: 'dy', label: '打野' },
   { value: 'yz', label: '游走' },
 ]
+const BreakoutOptions = [
+  {value:'all',label:'全部'},
+  {value:'zb',label:'装备'},
+  {value:'dj',label:'道具'},
+  {value:'jn',label:'额外技能'}
+]
 // job：职业标识，可多个。上面「游戏职业」按这个筛选
 const heroModeType = ref([
   {
@@ -154,7 +159,7 @@ const heroModeType = ref([
        totalPrice : 275 , 
        attributes : [ '+20物理攻击' ] 
      }
-    },
+  },
   { id: 2, 
     type: 'normal', 
     name: '匕首', 
@@ -384,12 +389,175 @@ const heroModeType = ref([
      }
   }
 ])
+// 边境模式的筛选
+const BreakoutType = ref([
+  {
+    id:1,
+    name:'砂之破军',
+    img:'/image/Breakout/bj.webp',
+    jobs:['zb'],
+    Various:{
+      level:'等级4级',
+      attributes : [ '+250攻击' ],
+      unique:['唯一被动:【破军】:目标生命低于50%时伤害提高30%']
+    }
+  },
+  {
+    id:2,
+    name:'贤者之书',
+    img:"/image/Breakout/ds.webp",
+    jobs:['zb'],
+    Various:{
+      level:'等级4级',
+      attributes:['+400法攻','+600最大生命'],
+      unique:['唯一被动:【刻印】：增加1400点最大生命值']
+    }
+  },
+  {
+    id:3,
+    name:'砂之破晓',
+    img:'/image/Breakout/szpx.png',
+    jobs:['zb'],
+    Various:{
+      level:'等级4级',
+      attributes:['+100攻击','+35%攻速','+15%暴击'],
+      unique:['唯一被动:【破甲】: +22.5%物理穿透（远程英雄使用时效果翻倍）']
+    }
+  },
+  {
+    id:4,
+    name:'隐匿胄甲',
+    img:'/image/Breakout/ynkj.webp',
+    level:'等级4级',
+    jobs:['zb'],
+    Various:{
+      level:'等级4级',
+      attributes:['+400法攻','+1500最大生命'],
+      unique:['唯一被动:【隐匿】：脱战后靠墙会伪装自己进入隐身']
+    }
+  },
+  {
+    id:5,
+    name:'砂之守卫',
+    img:'/image/Breakout/szsw.png',
+    jobs:['zb'],
+    Various:{
+      level:'等级4级',
+      attributes:['+300护甲','+1000生命'],
+      unique:['唯一被动:【砂之护盾】，脱战后5秒会获得一个可以抵挡伤害的护盾']
+    }
+  },
+  {
+    id:6,
+    name:'恢复药剂',
+    img:'/image/Breakout/hwyj.webp',
+    jobs:['zb'],
+    Various:{
+      level:'等级2级',
+      unique:['吟唱8秒后，每2秒为英雄回复4%最大生命值，持续30秒']
+    }
+  },
+  {
+    id:7,
+    name:'小药瓶',
+    img:'/image/Breakout/xyp.png',
+    jobs:['zb'],
+    Various:{
+      level:'等级2级',
+      unique:['吟唱5秒后英雄回复36%最大生命值']
+    }
+  },
+  {
+    id:8,
+    name:'大药箱',
+    img:'/image/Breakout/dyx.webp',
+    jobs:['zb'],
+    Various:{
+      level:'等级2级',
+      unique:['吟唱8秒后英雄回复60%最大生命值']
+    }
+  },
+  {
+    id:9,
+    name:'砂之重装',
+    img:'/image/Breakout/szcz.png',
+    jobs:['zb'],
+    Various:{
+      level:'等级4级',
+      attributes:['+3000生命'],
+      unique:['唯一被动:【复苏】，脱离战斗后每秒回复3%最大生命值']
+    }
+  },
+  {
+    id:10,
+    name:'奥数法杖',
+    img:'/image/Breakout/asfz.png',
+    jobs:['zb'],
+    Various:{
+      level:'等级4级',
+      attributes:['+200法术强度'],
+      unique:['唯一被动:【奥术】，技能命中会造成20%基于上次技能伤害数值的伤害']
+    }
+
+  },
+  {
+    id:11,
+    name:'砂之监视',
+    img:'/image/Breakout/szjs.webp',
+    jobs:['dj'],
+    Various:{
+      level:'等级2级',
+      attributes:['【砂之监视者】'],
+      unique:['放置一个隐形侦查守卫，守卫可以帮助你获得这个区域的视野，持续60秒']
+    }
+  },
+  {
+    id:12,
+    name:'狩猎陷阱',
+    img:'/image/Breakout/slxj.png',
+    jobs:['dj'],
+    Various:{
+      level:'等级2级',
+      attributes:['【狩猎陷阱】'],
+      unique:[' 布置最多2个陷阱，10秒后生效，敌人踩中后会被减速，一定时间后造成2秒眩晕']
+    }
+  },
+  {
+    id:13,
+    name:'安琪拉：混沌火种',
+    img:'/image/Breakout/aql.webp',
+    jobs:['jn'],
+    Various:{
+      level:'等级2级',
+      unique:['获取安琪拉遗落在边境的魔法书。可以释放来自安琪拉的1级技能【混沌火种】']
+    }
+  },
+  {
+    id:14,
+    name:'鬼谷子：万物有灵',
+    img:'/image/Breakout/ggz.png',
+    jobs:['jn'],
+    Various:{
+      level:'等级3级',
+      unique:['获取孙膑遗落在边境的时空之力。可以释放来自孙膑的2级技能【时光流逝】']
+    }
+  },
+])
+// 常规装备的筛选
 const filteredList = computed(()=>{
   return heroModeType.value.filter(item=>{
     const matchType = TypeList.value === 'all' || item.jobs.includes(TypeList.value)
     const matchName = !keyword.value || item.name.includes(keyword.value)
     return matchType && matchName
   })
+})
+// 边境装备的筛选
+const BreakoutfilteredList = computed(()=>{
+   return BreakoutType.value.filter(item=>{
+      const matchType = FilterList.value === 'all' || item.jobs.includes(FilterList.value)
+      const matchName = !keyword.value || item.name.includes(keyword.value)
+      return matchType && matchName
+    })
 })
 </script>
 
