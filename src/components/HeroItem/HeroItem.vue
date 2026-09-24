@@ -9,7 +9,16 @@
           </el-radio>
         </el-radio-group>
        </ul>
-        <ul class="clearfix types-ms parent-type">
+        <ul class="clearfix types-ms parent-type" v-if="ModeType==='Regular'">
+         <el-radio-group v-model="TypeList" class="radios-item">
+          <el-radio   
+            v-for="item in TypeListOptions"
+            :key="item.value"
+            :value="item.value">{{item.label}}
+          </el-radio>
+        </el-radio-group>
+       </ul>
+         <ul class="clearfix types-ms parent-type"  v-else-if="ModeType==='Various'">
          <el-radio-group v-model="TypeList" class="radios-item">
           <el-radio   
             v-for="item in TypeListOptions"
@@ -39,13 +48,13 @@
                 </el-input>
         </div>
     </div>
-    <div class="herolist-content">
+    <div class="herolist-content" v-if="ModeType==='Regular'">
         <ul class="clearfix herolist">
         <el-tooltip
             class="box-item"
             effect="dark"
             placement="top"
-            v-for="item in heroModeType" :key="item.id"
+            v-for="item in filteredList" :key="item.id"
            >
            <template #content>
             <div class="item-tooltip">
@@ -57,8 +66,41 @@
                 <p>售价：{{ item[ModeType].price }}</p>
                 <p>总价：{{ item[ModeType].totalPrice }}</p>
                 <p v-for="(attr, i) in item[ModeType].attributes" :key="i">{{ attr }}</p>
-                <p v-if="item[ModeType].unique" class="unique">
-                  {{ item[ModeType].unique }}
+                <p v-if="item[ModeType].unique" class="unique" v-for="(uniaue,i) in item[ModeType].unique" :key="i">
+                  {{ uniaue }}
+                </p>
+              </div>
+            </div>
+          </template>
+        <li class="heroItem" > 
+                <div class="gotoLis">
+                    <img :src="item.img">
+                </div>
+                 <p class="hero-name">{{item.name}}</p>
+            </li>
+       </el-tooltip>
+        </ul>
+    </div>
+    <div class="herolist-content" v-else-if="ModeType==='Various'">
+        <ul class="clearfix herolist">
+        <el-tooltip
+            class="box-item"
+            effect="dark"
+            placement="top"
+            v-for="item in filteredList" :key="item.id"
+           >
+           <template #content>
+            <div class="item-tooltip">
+              <div class="tooltip-left">
+                <img :src="item.img" :alt="item.name" />
+              </div>
+              <div class="tooltip-right">
+                <h3>{{ item.name }}</h3>
+                <p>售价：{{ item[ModeType].price }}</p>
+                <p>总价：{{ item[ModeType].totalPrice }}</p>
+                <p v-for="(attr, i) in item[ModeType].attributes" :key="i">{{ attr }}</p>
+                <p v-if="item[ModeType].unique" class="unique" v-for="(uniaue,i) in item[ModeType].unique" :key="i">
+                  {{ uniaue }}
                 </p>
               </div>
             </div>
@@ -213,7 +255,142 @@ const heroModeType = ref([
        unique:['唯一被动-破甲: +30%物理穿透']
      }
   },
+  {
+     id: 11,
+     type: 'normal', 
+     name: '咒术典籍', 
+     img: '/image/HeroItem/zsdj.webp', 
+     jobs: ['fs'],
+     Regular : {
+       price : 165 ,
+       totalPrice : 274 , 
+       attributes : [ '+35法术攻击' ],
+     }
+  },
+  {
+     id: 12,
+     type: 'normal', 
+     name: '蓝宝石', 
+     img: '/image/HeroItem/lbs.webp', 
+     jobs: ['fs'],
+     Regular : {
+       price : 165 ,
+       totalPrice : 275 , 
+       attributes : [ '+400最大法力' ],
+     }
+  },
+  {
+     id: 13,
+     type: 'normal', 
+     name: '红玛瑙', 
+     img: '/image/HeroItem/hmn.webp', 
+     jobs: ['fy'],
+     Regular : {
+       price : 180 ,
+       totalPrice : 300 , 
+       attributes : [ '+300最大生命' ],
+     }
+  },
+  {
+     id: 14,
+     type: 'normal', 
+     name: '布甲', 
+     img: '/image/HeroItem/bj.webp', 
+     jobs: ['fy'],
+     Regular : {
+       price : 165 ,
+       totalPrice : 275 , 
+       attributes : [ '+100物理防御' ],
+     }
+  },
+  {
+     id: 15,
+     type: 'normal', 
+     name: '神速之靴', 
+     img: '/image/HeroItem/sszx.webp', 
+     jobs: ['yd'],
+     Regular : {
+       price : 150 ,
+       totalPrice : 250 , 
+       attributes : [ '所有鞋类装备的移速加成效果不叠加' ],
+       unique:['唯一被动: +30移动速度']
+     }
+  },
+  {
+     id: 16,
+     type: 'normal', 
+     name: '影刃之足', 
+     img: '/image/HeroItem/yrzz.webp', 
+     jobs: ['yd'],
+     Regular : {
+       price : 420 ,
+       totalPrice : 700 , 
+       attributes : [ '+50法术防御','+120物理防御' ],
+       unique:['唯一被动：+50移动速度（所有鞋类装备的移速加成效果不叠加）',"唯一被动：抵挡6%~12%物理伤害"]
+     }
+
+  },
+  {
+     id: 17,
+     type: 'normal', 
+     name: '狩猎宽刃', 
+     img: '/image/HeroItem/slkr.webp', 
+     jobs: ['dy'],
+     Regular : {
+       price : 150 ,
+       totalPrice : 250 , 
+       attributes : [ '4分钟前：不参与兵线分配，单独获得50%金币/经验；10分钟前：对兵线伤害降低25%' ],
+       unique:['被动-狩猎: 普攻/技能命中后，野怪每0.5秒70~140点法术伤害，（远程英雄伤害减半），持续2秒。受野怪伤害降低25%，获得来自野怪的经验提升20%。']
+     }
+  },
+  {
+     id: 18,
+     type: 'normal', 
+     name: '游击弯刀', 
+     img: '/image/HeroItem/yjwd.webp', 
+     jobs: ['dy'],
+     Regular : {
+       price : 420 ,
+       totalPrice : 700 , 
+       attributes : [ '+40法术攻击' ],
+       unique:['被动-狩猎: 普攻/技能命中后，野怪每0.5秒受到70~140(+0.45%目标最大生命值)的法术伤害（远程攻击减半，对英雄伤害生效10%），持续2秒。受野怪伤害降低25%，获得来自野怪的经验提升30%、金币提升20%','被动-奖赏: 自己或700范围内友方击杀野怪增加自身6点法术攻击，最多叠加15层']
+     }
+  },
+  {
+     id: 19,
+     type: 'normal', 
+     name: '学识宝石', 
+     img: '/image/HeroItem/xsbs.webp', 
+     jobs: ['yz'],
+     Regular : {
+       price : 180 ,
+       totalPrice : 300 , 
+       attributes : [ '+5%移速' ],
+       unique:['被动-游击：每3秒增加自身5经验，增加队伍中经济最低的英雄5金币']
+     }
+
+  },
+  {
+     id: 20,
+     type: 'normal', 
+     name: '极影', 
+     img: '/image/HeroItem/jy.webp', 
+     jobs: ['yz'],
+     Regular : {
+       price : 1140 ,
+       totalPrice :1900 , 
+       attributes : [ '+5%移速','+500生命值' ],
+       unique:['被动-迅捷光环：增加自身12%攻速、9%冷却和每5秒回蓝10，对800范围友方造成50%效果','被动-奖赏：增加200-400最大生命值，增加15~30主攻属性（1主攻击属性=1物理攻击或2法术攻击）','被动-游击：每3秒增加自身5经验，每隔15秒传送一枚掉落的金币到英雄附近，增加队伍中经济最低的英雄5金币(众星峡谷中的效果保持不变)']
+     }
+  }
 ])
+const filteredList = computed(()=>{
+  return heroModeType.value.filter(item=>{
+    const matchType = TypeList.value === 'all' || item.jobs.includes(TypeList.value)
+    const matchName = !keyword.value || item.name.includes(keyword.value)
+    return matchType && matchName
+  })
+})
 </script>
 
 <style scoped lang="scss">
@@ -372,6 +549,8 @@ const heroModeType = ref([
     .tooltip-right{
       flex: 1;
       min-width: 0;
+      width:200px;
+      white-space:inherit;
     }
     h3{
       margin: 0 0 6px;
@@ -388,6 +567,7 @@ const heroModeType = ref([
       padding-top: 6px;
       border-top: 1px dashed #555;
       color: #ff9a3c;
+      white-space: pre-wrap;
     }
   }
 </style>
