@@ -10,6 +10,7 @@ import Hreo from "@/view/HreoList/Hreo.vue"
 import HeroItem from "@/components/HeroItem/HeroItem.vue"
 import HeroSpell from "@/components/HeroSpell/HeroSpell.vue"
 import HeroList from "@/components/HeroList/HeroList.vue"
+import HeroSite from "@/view/LeakSite/HeroSite.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -85,6 +86,12 @@ const router = createRouter({
           meta:{title:'召唤师技能'}
         }
       ]
+    },
+    {
+      path:'/HeroSite',
+      name:'HeroSite',
+      component:HeroSite,
+      meta:{title:'爆料站'}
     }
   ],
 })

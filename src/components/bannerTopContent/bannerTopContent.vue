@@ -18,7 +18,7 @@
         <div class="box-item_li">
           <div class="box_item_row" @click="GotoVersionZone({ name: 'VersionZone' })"><span class="box_item_icon_slot"></span><span>版本专区</span></div>
           <div class="box_item_row" @click="GotoHero({ name: 'Hero' })"><span class="box_item_icon_slot"></span><span>英雄资料</span></div>
-          <div class="box_item_row"><span class="box_item_icon_slot"></span><span>爆料站</span></div>
+          <div class="box_item_row" @click="GotoHeroSite({name:'HeroSite'})"><span class="box_item_icon_slot"></span><span>爆料站</span></div>
           <div class="box_item_row"><span class="box_item_icon_slot"></span><span>游戏壁纸</span></div>
           <div class="box_item_row"><span class="box_item_icon_slot"></span><span>世界观站</span></div>
         </div>
@@ -249,6 +249,10 @@ const GotoVersionZone = (path) => {
   window.open(href, '_blank')
 }
 const GotoHero = (path) => {
+  const { href } = router.resolve(path)
+  window.open(href, '_blank')
+}
+const GotoHeroSite = (path) => {
   const { href } = router.resolve(path)
   window.open(href, '_blank')
 }
