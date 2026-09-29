@@ -22,3 +22,28 @@ ul, li {
   transform: translateX(30px);
   opacity: 0;
 }
+
+/* ===== 全局滚动条美化（Chrome / Edge / Safari） ===== */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background:rgba(210, 214, 214, 0.35);
+  transition: background 0.2s ease;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #07b8dd;
+}
+*::-webkit-scrollbar-button {
+  display: none;
+}
+/* ===== Firefox 细滚动条 ===== */
+* {
+  scrollbar-width: thin;
+  scrollbar-color:rgba(210, 214, 214, 0.35) transparent;
+}
