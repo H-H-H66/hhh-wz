@@ -12,22 +12,30 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const HeroSite = ref(1)
+import { ref, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+const router = useRouter()
+const route = useRoute()
 const HeroSiteItem = ref(
   [
-    {id:1,name:'首页',info:'HOME',path:''},
-    {id:2,name:'皮肤',info:'SKIN',path:''},
-    {id:3,name:'英雄',info:'HERO',path:''},
-    {id:4,name:'玩法',info:'MODE',path:''},
-    {id:5,name:'系统',info:'SYSTEM',path:''},
-    {id:6,name:'美术优化',info:'ARTS',path:''},
+    {id:1, name:'首页',     info:'HOME',   path:'/HeroSite/home'},
+    {id:2, name:'皮肤',     info:'SKIN',   path:'/HeroSite/skin'},
+    {id:3, name:'英雄',     info:'HERO',   path:'/HeroSite/hero'},
+    {id:4, name:'玩法',     info:'MODE',   path:'/HeroSite/mode'},
+    {id:5, name:'系统',     info:'SYSTEM', path:'/HeroSite/system'},
+    {id:6, name:'美术优化', info:'ARTS',   path:'/HeroSite/arts'},
   ]
 )
-const selectItem = (item) =>{
-  HeroSite.value = item.id
+const selectItem = (item) => {
+  router.push(item.path)
 }
+// 选中态：用当前路由自动判断
+const HeroSite = computed(() => {
+  const match = HeroSiteItem.value.find(i => i.path === route.path)
+  return match ? match.id : 1
+})
 </script>
+
 
 <style scoped lang="scss">
 .HeroSiteTop{

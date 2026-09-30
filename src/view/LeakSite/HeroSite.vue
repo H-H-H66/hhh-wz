@@ -5,14 +5,7 @@
         <HeroSiteTop></HeroSiteTop>
       </el-header>
       <el-main class="main">
-             <!-- 轮播图 -->
-        <HeroSiteBanner></HeroSiteBanner>
-             <!-- 皮肤 -->
-        <HeroSiteSkin></HeroSiteSkin>
-             <!-- 英雄 -->
-        <HeroSiteHero></HeroSiteHero>
-             <!-- 其他 -->
-        <HeroSiteOther></HeroSiteOther>
+        <router-view></router-view>
       </el-main>
       <el-footer>
         <HeroSiteFooter></HeroSiteFooter>
@@ -23,14 +16,6 @@
 
 <script setup>
 import HeroSiteTop from '@/components/HeroSite/HeroSiteTop.vue'
-// 轮播图
-import HeroSiteBanner from '@/components/HeroSite/HeroSiteBanner.vue'
-// 皮肤
-import HeroSiteSkin from '@/components/HeroSite/HeroSiteSkin.vue'
-// 英雄
-import HeroSiteHero from '@/components/HeroSite/HeroSiteHero.vue'
-// 其他
-import HeroSiteOther from '@/components/HeroSite/HeroSiteOther.vue'
 // 底部
 import HeroSiteFooter from '@/components/HeroSite/HeroSiteBottom.vue'
 </script>

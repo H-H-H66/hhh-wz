@@ -12,6 +12,12 @@ import HeroSpell from "@/components/HeroSpell/HeroSpell.vue"
 import HeroList from "@/components/HeroList/HeroList.vue"
 import HeroSite from "@/view/LeakSite/HeroSite.vue"
 import HeroSkin from '@/view/HeroSkin/HeroSkin.vue'
+import HeroSiteHome from '@/components/HeroSite/HeroSiteHome.vue'
+import HeroSiteSkin from '@/components/HeroSite/HeroSiteSkin.vue'
+import HeroSiteHero from '@/components/HeroSite/HeroSiteHero.vue'
+import HeroSiteMode from '@/components/HeroSite/HeroSiteMode.vue'
+import HeroSiteSystem from '@/components/HeroSite/HeroSiteSystem.vue'
+import HeroSiteArts from '@/components/HeroSite/HeroSiteArts.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -92,13 +98,44 @@ const router = createRouter({
       path:'/HeroSite',
       name:'HeroSite',
       component:HeroSite,
+      redirect:'/HeroSite/home',
       meta:{title:'爆料站'},
       children:[
         {
-          path:'heroSkin',
+          path:'home',
+          name:'HeroSiteHome',
+          component: HeroSiteHome,
+          meta:{title:'首页'}
+        },
+        {
+          path:'skin',
           name:'HeroSkin',
-          component:HeroSkin,
-          meta:{title:'英雄皮肤'}
+          component: HeroSkin,
+          meta:{title:'皮肤'}
+        },
+        {
+          path:'hero',
+          name:'HeroSiteHero',
+          component: HeroSiteHero,
+          meta:{title:'英雄'}
+        },
+        {
+          path:'mode',
+          name:'HeroSiteMode',
+          component: HeroSiteMode,
+          meta:{title:'玩法'}
+        },
+        {
+          path:'system',
+          name:'HeroSiteSystem',
+          component: HeroSiteSystem,
+          meta:{title:'系统'}
+        },
+        {
+          path:'arts',
+          name:'HeroSiteArts',
+          component: HeroSiteArts,
+          meta:{title:'美术优化'}
         }
       ]
     }
