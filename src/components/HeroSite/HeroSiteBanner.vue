@@ -125,7 +125,7 @@ const HeroSiteItem = ref([
 <style scoped lang="scss">
 .HeroBanner{
   width: 100%;
-  margin: 55px 0;
+  margin-top: 50px;
 
   /* 每张轮播铺满，不留卡片缝隙 */
   .bannerHero{
@@ -205,6 +205,9 @@ const HeroSiteItem = ref([
   }
   :deep(.el-carousel__indicators){
     margin-bottom:-20px;
+  }
+  :deep(.el-carousel__item--card){
+    border-radius:20px;
   }
 }
 </style>

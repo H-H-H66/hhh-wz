@@ -11,6 +11,7 @@ import HeroItem from "@/components/HeroItem/HeroItem.vue"
 import HeroSpell from "@/components/HeroSpell/HeroSpell.vue"
 import HeroList from "@/components/HeroList/HeroList.vue"
 import HeroSite from "@/view/LeakSite/HeroSite.vue"
+import HeroSkin from '@/view/HeroSkin/HeroSkin.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -91,7 +92,15 @@ const router = createRouter({
       path:'/HeroSite',
       name:'HeroSite',
       component:HeroSite,
-      meta:{title:'爆料站'}
+      meta:{title:'爆料站'},
+      children:[
+        {
+          path:'heroSkin',
+          name:'HeroSkin',
+          component:HeroSkin,
+          meta:{title:'英雄皮肤'}
+        }
+      ]
     }
   ],
 })

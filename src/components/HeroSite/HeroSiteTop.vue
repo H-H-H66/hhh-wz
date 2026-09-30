@@ -39,6 +39,17 @@ const selectItem = (item) =>{
   top:0;
   left:254px;
 }
+/* 横跨全屏的半透明黑色背景条（不随 1200px 内容宽度限制） */
+.HeroSiteTop::before{
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: -1;
+}
 .pvp-logo{
   background:url('/image/banner1/bannerToplogo.webp') right center no-repeat;
   width:192px;
@@ -67,7 +78,7 @@ const selectItem = (item) =>{
     align-items: center;
 }
 .nav-index{
-    color: #6e6a63;
+    color: rgba(255, 255, 255, 0.85);
     font-size: 16px;
     padding: 0 24px;
     height: 62px;
@@ -79,11 +90,14 @@ const selectItem = (item) =>{
 .nav-index cite{
     display: block;
     font-style: normal;
-    color: #464441;
+    color: rgba(255, 255, 255, 0.55);
     font-size: 10px;
 }
 .nav-active{
     color: #c39b5e;
     border-bottom: 2px solid #c39b5e;
+}
+.nav-active cite{
+    color: #c39b5e;
 }
 </style>
