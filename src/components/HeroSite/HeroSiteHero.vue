@@ -167,7 +167,6 @@
     }
     .showHero{
       float: right;
-      width: 100%;
       height: 56px;
       background-color: rgba(0, 0, 0);
       border: solid 1px #c39b5e;
@@ -179,15 +178,45 @@
       cursor: pointer;
       position: relative;
       overflow: hidden;
+       span{
+        position: absolute;
+        left: 0;
+        width: 100%;
+       }
     }
-}
-.more-icon{
+    .more-icon{
     border-top: 2px solid #c39b5e;
     border-right: 2px solid #c39b5e;
     transform: rotate(45deg);
     display: inline-block;
     width: 13px;
     height: 13px;
+    margin-left: 100px;
+}
+  .showHero:hover span{
+    -webkit-animation: .1s slideUp linear normal, .1s .1s slideDown linear normal;
+    animation: .1s slideUp linear normal, .1s .1s slideDown linear normal;
+}
+@keyframes slideUp{
+0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+100% {
+    -webkit-transform: translateY(-70%);
+    transform: translateY(-70%);
+}
+}
+@keyframes slideDown{
+0% {
+    -webkit-transform: translateY(70%);
+    transform: translateY(70%);
+}
+100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+}
 }
 .cont-top-right{
     position: absolute;
