@@ -6,6 +6,7 @@ export const skinList = [
       img: '/image/HeroSite/NewSite/Hero/lyn.png',
       time: '20261001',
       image: '/image/HeroSite/NewSite/yz.png',
+      images:'/image/HeroSite/NewSite/HeroSkill/lyn/1.png',
       getWay:'获取方式：<60点券限时秒杀>',
       skills:[
         {number:'01',title:'普通攻击',media:'/image/HeroSite/NewSite/HeroSkill/lyn/lynap.webp'},
@@ -36,6 +37,7 @@ export const skinList = [
       img: '/image/HeroSite/NewSite/Hero/ssx.jpg',
       time: '20260923',
       image: '/image/HeroSite/NewSite/ws.webp',
+      images:'/image/HeroSite/NewSite/HeroSkill/ssx/ssx1.jpg',
       getWay:'获取方式：<三丽鸥家族珍品无双祈愿活动获得>',
       skills:[
         {number:'01',title:'普通攻击',media:'/image/HeroSite/NewSite/HeroSkill/ssx/ssxap.webp'},

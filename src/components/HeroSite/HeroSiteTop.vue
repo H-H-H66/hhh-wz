@@ -1,5 +1,5 @@
 <template>
-  <div class="HeroSiteTop">
+  <div class="HeroSiteTop" :class="{'is-static':isSkinDetail}">
      <div class="pvp-logo"></div>
      <div class="main-logo"></div>
      <div class="header_nav"> 
@@ -29,6 +29,9 @@ const HeroSiteItem = ref(
 const selectItem = (item) => {
   router.push(item.path)
 }
+const isSkinDetail = computed(() => {
+  return /^\/HeroSite\/skin\/.+/.test(route.path)
+})
 // 选中态：详情页 /HeroSite/skin/1 也要高亮「皮肤」
 const HeroSite = computed(() => {
   const match = [...HeroSiteItem.value]
@@ -51,7 +54,16 @@ const HeroSite = computed(() => {
   top:0;
   left:254px;
 }
-/* 横跨全屏的半透明黑色背景条（不随 1200px 内容宽度限制） */
+.HeroSiteTop.is-static{
+  position: relative;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 80px;
+  margin: 0;
+  background: #000; /* 详情页顶栏整条纯黑，避免被裁切少一截 */
+}
+/* 横跨全屏的背景条（不随 1200px 内容宽度限制） */
 .HeroSiteTop::before{
   content: '';
   position: fixed;
@@ -61,6 +73,23 @@ const HeroSite = computed(() => {
   height: 80px;
   background: rgba(0, 0, 0, 0.35);
   z-index: -1;
+}
+/* 详情页用自身 background，不再依赖伪元素 */
+.HeroSiteTop.is-static::before {
+  display: none;
+}
+/* 详情页内容仍按 1200 居中，logo/导航位置不变 */
+.HeroSiteTop.is-static .pvp-logo {
+  left: calc(50% - 600px - 232px);
+}
+.HeroSiteTop.is-static .main-logo {
+  left: calc(50% - 600px - 34px);
+}
+.HeroSiteTop.is-static .header_nav {
+  float: none;
+  margin-left: 0;
+  position: absolute;
+  left: calc(50% - 600px + 130px);
 }
 .pvp-logo{
   background:url('/image/banner1/bannerToplogo.webp') right center no-repeat;

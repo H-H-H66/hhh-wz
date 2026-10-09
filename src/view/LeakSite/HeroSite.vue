@@ -27,7 +27,9 @@ height: 100vh;
 overflow-y: auto;
 }
 .headerTOP{
-  padding:0;
+  padding: 0;
+  height: auto !important;
+  overflow: visible;
 }
 .main{
   padding:0;
