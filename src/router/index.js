@@ -18,6 +18,7 @@ import HeroSiteHero from '@/components/HeroSite/HeroSiteHero.vue'
 import HeroSiteMode from '@/components/HeroSite/HeroSiteMode.vue'
 import HeroSiteSystem from '@/components/HeroSite/HeroSiteSystem.vue'
 import HeroSiteArts from '@/components/HeroSite/HeroSiteArts.vue'
+import HeroSkinDetail from '@/view/HeroSkin/HeroSkinDetail.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -112,6 +113,12 @@ const router = createRouter({
           name:'HeroSkin',
           component: HeroSkin,
           meta:{title:'皮肤'}
+        },
+        {
+          path:'skin/:id',
+          name:'HeroSkinDetail',
+          component: HeroSkinDetail,
+          meta:{title:'皮肤详情'}
         },
         {
           path:'hero',

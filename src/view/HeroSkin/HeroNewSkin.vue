@@ -7,7 +7,7 @@
         <div class="wrap-content">
           <div class="adjust-list">
             <ul>
-              <li v-for="HeroItem in HeroListSite" :key="HeroItem.id">
+              <li v-for="HeroItem in HeroListSite" :key="HeroItem.id" @click="GotoHeroDetail(HeroItem.id)">
                 <div class="SkinItem">
                    <img :src="HeroItem.image" class="adjust-label2"></img>
                    <div class="adjust-img">
@@ -29,6 +29,9 @@
 
 <script setup>
 import { ref } from 'vue'
+import {useRouter,useRoute} from 'vue-router'
+const router = useRouter()
+const route= useRoute()
 const HeroListSite = ref([
   {
     id:1,
@@ -111,6 +114,13 @@ const HeroListSite = ref([
     image:'/image/HeroSite/NewSite/xl.png'
   }
 ]) 
+//路由跳转到皮肤的详情页
+const GotoHeroDetail = (id)=>{
+  router.push({
+    name:'HeroSkinDetail',
+    params:{id:id}
+  })
+}
 </script>
 
 <style scoped>

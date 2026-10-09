@@ -29,9 +29,13 @@ const HeroSiteItem = ref(
 const selectItem = (item) => {
   router.push(item.path)
 }
-// 选中态：用当前路由自动判断
+// 选中态：详情页 /HeroSite/skin/1 也要高亮「皮肤」
 const HeroSite = computed(() => {
-  const match = HeroSiteItem.value.find(i => i.path === route.path)
+  const match = [...HeroSiteItem.value]
+    .sort((a, b) => b.path.length - a.path.length)
+    .find(
+      (i) => route.path === i.path || route.path.startsWith(i.path + '/')
+    )
   return match ? match.id : 1
 })
 </script>
