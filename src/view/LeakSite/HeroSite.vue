@@ -33,5 +33,7 @@ overflow-y: auto;
 }
 .main{
   padding:0;
+  /* Element Plus 默认 overflow:auto，会打断子页面 sticky/吸顶 */
+  overflow: visible;
 }
 </style>
