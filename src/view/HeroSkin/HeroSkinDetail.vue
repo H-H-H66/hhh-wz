@@ -48,6 +48,10 @@
 
      <!-- 皮肤效果展示 -->
       <HeroSkinShow></HeroSkinShow>
+      <!-- 技能效果展示 -->
+      <HeroSkinSkill></HeroSkinSkill>
+      <!-- 灵感及特性 -->
+       <HeroSkinInsight></HeroSkinInsight>
   </div>
 </template>
 
@@ -56,6 +60,8 @@ import { computed, ref ,nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { getSkinById } from '@/utils/HeroList.js'
 import HeroSkinShow from './HeroSkinShow.vue'
+import HeroSkinSkill from "./HeroSkinSkill.vue"
+import HeroSkinInsight from './HeroSkinInsight.vue'
 const activeDefult = ref(1)
 const activeHero = ref([
   {id:1,name:'皮肤展示'},

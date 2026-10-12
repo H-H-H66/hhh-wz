@@ -18,7 +18,13 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [
-      vue(),
+     vue({
+  template: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag === 'font',
+    },
+  },
+}),
       // 与浏览器 Vue Devtools 扩展冲突时会导致异常，需要时再打开
       // vueDevTools(),
       AutoImport({

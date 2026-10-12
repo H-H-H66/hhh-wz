@@ -13,7 +13,7 @@ import HeroList from "@/components/HeroList/HeroList.vue"
 import HeroSite from "@/view/LeakSite/HeroSite.vue"
 import HeroSkin from '@/view/HeroSkin/HeroSkin.vue'
 import HeroSiteHome from '@/components/HeroSite/HeroSiteHome.vue'
-import HeroSiteSkin from '@/components/HeroSite/HeroSiteSkin.vue'
+import HeroNewItem from "@/view/HeroItem/HeroNewItem.vue"
 import HeroSiteHero from '@/components/HeroSite/HeroSiteHero.vue'
 import HeroSiteMode from '@/components/HeroSite/HeroSiteMode.vue'
 import HeroSiteSystem from '@/components/HeroSite/HeroSiteSystem.vue'
@@ -122,8 +122,8 @@ const router = createRouter({
         },
         {
           path:'hero',
-          name:'HeroSiteHero',
-          component: HeroSiteHero,
+          name:'HeroNewItem',
+          component: HeroNewItem,
           meta:{title:'英雄'}
         },
         {

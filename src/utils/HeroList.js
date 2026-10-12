@@ -11,9 +11,9 @@ export const skinList = [
       Heroavator:'/image/HeroSite/NewSite/HeroSkill/lyn/tx.png',
       getWay:'获取方式：<60点券限时秒杀>',
       skills:[
-        {number:'01',title:'普通攻击',media:'/image/HeroSite/NewSite/HeroSkill/lyn/lynap.webp'},
-        {number:'02',title:'一技能',media:'/image/HeroSite/NewSite/HeroSkill/lyn/lyn1.webp'},
-        {number:'03',title:'二技能',media:'/image/HeroSite/NewSite/HeroSkill/lyn/lyn2.webp'},
+        {number:'01',title:'普通攻击',media:'/image/HeroSite/NewSite/HeroSkill/lyn/lyap.webp'},
+        {number:'02',title:'一技能',media:'/image/HeroSite/NewSite/HeroSkill/lyn/lya1.webp'},
+        {number:'03',title:'二技能',media:'/image/HeroSite/NewSite/HeroSkill/lyn/lya2.webp'},
         {number:'04',title:'三技能',media:'/image/HeroSite/NewSite/HeroSkill/lyn/lyn3.webp'},
       ],
       story:{
@@ -41,9 +41,10 @@ export const skinList = [
       image: '/image/HeroSite/NewSite/ws.webp',
       images:'/image/HeroSite/NewSite/HeroSkill/ssx/ssx1.jpg',
       Heroavator:'/image/HeroSite/NewSite/HeroSkill/ssx/tx.jpg',
+      Animation:'/image/HeroSite/ssxdt.gif',
       getWay:'获取方式：<三丽鸥家族珍品无双祈愿活动获得>',
       skills:[
-        {number:'01',title:'普通攻击',media:'/image/HeroSite/NewSite/HeroSkill/ssx/ssxap.webp'},
+        {number:'01',title:'普通攻击',media:'/image/HeroSite/NewSite/HeroSkill/ssx/ssxp.webp'},
         {number:'02',title:'一技能',media:'/image/HeroSite/NewSite/HeroSkill/ssx/ssx1.webp'},
         {number:'03',title:'二技能',media:'/image/HeroSite/NewSite/HeroSkill/ssx/ssx2.webp'},
         {number:'04',title:'三技能',media:'/image/HeroSite/NewSite/HeroSkill/ssx/ssx3.webp'},
@@ -57,8 +58,8 @@ export const skinList = [
         ArtDesign:"【无双特性双海报】",//美宣图设计,
         SkillDesign:"特效设计以乐园的快乐魔法为核心，【酷洛米】形态以魔法筑起夜晚的冒险乐园；【美乐蒂】形态则以魔法打造白天的温馨乐园。可通过回城或大招释放切换形态。",//技能设计,
         SkillVideo:[
-            {id:1,title:"●普通攻击：",desc:"【酷洛米】形态下，紫色的小火车发射紫水晶，也发射快乐。",media:"/image/HeroSite/NewSite/HeroSkill/ssx/ssxap.webp",media2:'/image/HeroSite/NewSite/HeroSkill/ssx/mp.webp',desc2:'【美乐蒂】形态下，粉色的小飞机发射草莓，也发射甜蜜。'},
-            {id:2,title:"●一技能：",desc:"【酷洛米】形态下，她乘着小火车去冒险。穿过魔法云朵圈，酷洛米专属小火车出击，绽放出如酷洛米般闪耀瞩目的水晶和烟花。",media:"/image/HeroSite/NewSite/HeroSkill/ssx/ssx1.webp",media2:'/image/HeroSite/NewSite/HeroSkill/ssx/mp1.webp',desc2:'【美乐蒂】形态下， 她乘着小飞机去游玩。穿过魔法泡泡，美乐蒂专属小飞机出击，绽放出如美乐蒂般可爱甜美的泡泡和云朵。'},
+            {id:1,title:"●普通攻击：",desc:"【酷洛米】形态下，紫色的小火车发射紫水晶，也发射快乐。",media:"/image/HeroSite/NewSite/HeroSkill/ssx/ssxp.webp",media2:'/image/HeroSite/NewSite/HeroSkill/ssx/mp.webp',desc2:'【美乐蒂】形态下，粉色的小飞机发射草莓，也发射甜蜜。'},
+            {id:2,title:"●一技能：",desc:"【酷洛米】形态下，她乘着小火车去冒险。穿过魔法云朵圈，酷洛米专属小火车出击，绽放出如酷洛米般闪耀瞩目的水晶和烟花。",media:"/image/HeroSite/NewSite/HeroSkill/ssx/ssx1.webp",media2:'/image/HeroSite/NewSite/HeroSkill/ssx/m1.webp',desc2:'【美乐蒂】形态下， 她乘着小飞机去游玩。穿过魔法泡泡，美乐蒂专属小飞机出击，绽放出如美乐蒂般可爱甜美的泡泡和云朵。'},
             {id:3,title:"●二技能：",desc:"【酷洛米】形态下，小骷髅装饰的乐园晚间票飞出，刺激的冒险从飞天椅开始吧。",media:"/image/HeroSite/NewSite/HeroSkill/ssx/ssx2.webp",media2:'/image/HeroSite/NewSite/HeroSkill/ssx/m2.webp',desc2:'【美乐蒂】形态下，蝴蝶结装饰的乐园白天票飞出，温馨的时光从旋转木马启程吧。'},
             {id:4,title:"●三技能：",desc:"【酷洛米】形态下，小精灵怀抱快乐魔法飞出，进入乐园惊险刺激的过山车项目。",media:"/image/HeroSite/NewSite/HeroSkill/ssx/ssx3.webp",desc2:'【美乐蒂】形态下，小精灵怀抱快乐魔法飞出，进入乐园梦幻美好的摩天轮项目。',media2:'/image/HeroSite/NewSite/HeroSkill/ssx/m3.webp'},
         ],
