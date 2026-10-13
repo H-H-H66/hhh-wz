@@ -1,5 +1,5 @@
 <template>
-  <div class="hero-adjust hero-list">
+  <div class="hero-adjust hero-list" v-show="route.name==='HeroSkin'">
       <div class="wrap-list">
         <div class="wrap-tit">
            <h3>最新皮肤</h3>
@@ -25,15 +25,40 @@
         </div>
       </div>
   </div>
+   <div class="hero-adjust hero-list" v-show="route.name==='HeroNewItem'">
+      <div class="wrap-list">
+        <div class="wrap-tit">
+           <h3>最新英雄</h3>
+        </div>
+        <div class="wrap-contents">
+          <div class="adjust-lists">
+            <ul>
+              <li v-for="HeroItem in HeroItenList" :key="HeroItem.id" @click="GoHeroDetail(HeroItem.id)">
+                <div class="SkinItems">
+                   <img v-if="HeroItem.upImage" :src="HeroItem.upImage" class="adjust-label">
+                   <div class="adjust-img">
+                    <img :src="HeroItem.image">
+                   </div>
+                </div>
+                <div class="adjust-cont">
+                  <p class="adjust-names">{{ HeroItem.name }}</p>
+                  <p class="adjust-times">{{ HeroItem.time }}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import {useRouter,useRoute} from 'vue-router'
 import {skinList,getSkinById} from '@/utils/HeroList.js'
+import {HeroItenList} from '@/utils/HeroItem.js'
 const router = useRouter()
 const route= useRoute()
-// const HeroListSite = ref([
 //   {
 //     id:1,
 //     name:'烈焰狂欢-卢雅那',
@@ -119,6 +144,12 @@ const route= useRoute()
 const GotoHeroDetail = (id)=>{
   router.push({
     name:'HeroSkinDetail',
+    params:{id:id}
+  })
+}
+const GoHeroDetail = (id)=>{
+  router.push({
+    name:"HeroDetail",
     params:{id:id}
   })
 }
@@ -238,5 +269,67 @@ const GotoHeroDetail = (id)=>{
 }
   .adjust-list li:hover .adjust-img img {
     transform: scale(1.1);
+}
+.wrap-contents{
+  margin-top:70px;
+}
+.adjust-lists{
+  width:100%;
+  overflow: hidden;
+  img{
+    border:0;
+  }
+  li{
+    float:left;
+    width:384px;
+    overflow:hidden;
+    margin-right:23px;
+    height:327px;
+    border:solid 1px #252525;
+    background:#000;
+    box-sizing:border-box;
+    margin-bottom:24px;
+    cursor:pointer;
+    text-align:center;
+  }
+ li:hover {
+    border: solid 1px #bd8939;
+}
+  .SkinItems{
+    display:block;
+    position:relative;
+    .adjust-label{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 5;
+      pointer-events: none;
+      width: auto;
+      height: 28px;
+    }
+    .adjust-img img{
+      width:100%;
+      transition:all 0.4s ease;
+    }
+  }
+  li:hover .SkinItems .adjust-img img {
+    transform: scale(1.1);
+}
+}
+.adjust-cont{
+  .adjust-names{
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 1px;
+    color: #8f897f;
+    margin-top: 23px;
+  }
+  .adjust-times{
+    font-size: 13px;
+    line-height: 24px;
+    letter-spacing: 1px;
+    color: #535353;
+    margin:0;
+  }
 }
 </style>

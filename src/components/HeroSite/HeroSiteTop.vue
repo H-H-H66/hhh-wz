@@ -30,7 +30,8 @@ const selectItem = (item) => {
   router.push(item.path)
 }
 const isSkinDetail = computed(() => {
-  return /^\/HeroSite\/skin\/.+/.test(route.path)
+  // 皮肤详情 / 英雄详情：顶栏改为占位，避免 fixed 脱离文档流后内容顶到最上
+  return /^\/HeroSite\/(skin|hero)\/.+/.test(route.path)
 })
 // 选中态：详情页 /HeroSite/skin/1 也要高亮「皮肤」
 const HeroSite = computed(() => {

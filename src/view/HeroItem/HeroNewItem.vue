@@ -1,13 +1,13 @@
 <template>
   <div class="HeroSkin">
     <div class="arts-head-conts">
-      <div class="arts-head-title">星光竞辉-海诺</div>
+      <div class="arts-head-title">王维</div>
       <div class="arts-head-time">
         <i class="icon-lineL"></i>
-        20261001
+        20260923
         <i class="icon-lineR"></i>
       </div>
-      <div class="arts-head-desc">纷争止于赛场，荣耀生于此刻</div>
+      <div class="arts-head-desc">空山遗客·王维降临王者峡谷</div>
       <div class="arts-head-btn">
         <div class="GotoDetail">
           <div class="showHero">

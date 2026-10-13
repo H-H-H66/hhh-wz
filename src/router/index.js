@@ -19,6 +19,7 @@ import HeroSiteMode from '@/components/HeroSite/HeroSiteMode.vue'
 import HeroSiteSystem from '@/components/HeroSite/HeroSiteSystem.vue'
 import HeroSiteArts from '@/components/HeroSite/HeroSiteArts.vue'
 import HeroSkinDetail from '@/view/HeroSkin/HeroSkinDetail.vue'
+import HeroDetail from "@/view/HeroItem/HeroDetail.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -125,6 +126,12 @@ const router = createRouter({
           name:'HeroNewItem',
           component: HeroNewItem,
           meta:{title:'英雄'}
+        },
+        {
+          path:'hero/:id',
+          name:'HeroDetail',
+          component: HeroDetail,
+          meta:{title:'英雄详情'}
         },
         {
           path:'mode',
