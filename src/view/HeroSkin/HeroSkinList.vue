@@ -1,6 +1,6 @@
 <template>
     <!-- 第二层黑条：新皮肤信息 + 锚点；滚过顶栏后吸顶 -->
-    <div class="sub-header" >
+    <div class="sub-header" v-show="route.name==='HeroSkinDetail'">
       <div class="sub-cont">
          <div class="sub-text">
           <p class="titF">新皮肤</p>
@@ -23,20 +23,52 @@
          </div> 
         </div>
     </div>
+       <div class="sub-header" v-show="route.name==='HeroDetail'">
+      <div class="sub-cont">
+         <div class="sub-text">
+          <p class="titF">新英雄</p>
+          <p class="titS">
+            <span>{{skinHero.name}}</span>
+            <span>{{skinHero.desc}}</span>
+          </p>
+         </div>
+          <div class="sub-list">
+          <ul>
+            <li 
+            :class="{on:HeroItemList===item.id}"
+             v-for="item in HeroItem" 
+             :key="item.id" 
+             @click="aHerosList(item.id)">
+              <div class='showHero'>
+               {{ item.name }}
+              </div>
+            </li>
+          </ul>
+         </div> 
+        </div>
+    </div>
 </template>
 
 <script setup>
 import { computed, ref, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { getSkinById } from '@/utils/HeroList.js'
+import {getHeroById} from '@/utils/HeroItem.js'
 const route = useRoute()
 const skin = computed(() => getSkinById(route.params.id))
+const skinHero = computed(()=> getHeroById(route.params.id))
 const activeDefult = ref(1)
+const HeroItemList = ref(1)
 const activeHero = ref([
   {id:1,name:'皮肤展示'},
   {id:2,name:'灵感特性'}
 ])
-console.log(route,"9800808o8")
+const HeroItem = ref([
+  {id:1,name:'英雄介绍'},
+  {id:2,name:'玩法思路'},
+  {id:3,name:'设计思路'}
+
+])
 const activeHeros = (id)=>{
   activeDefult.value = id
    nextTick(() => {
@@ -44,6 +76,22 @@ const activeHeros = (id)=>{
     const target = id === 1
       ? document.querySelector('.head-title')   // 皮肤展示
       : document.querySelector('.skin-feature')  // 灵感特性，换成你实际的 class
+
+    if (!target) return
+
+    target.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    })
+  })
+}
+const aHerosList = (id)=>{
+  HeroItemList.value = id
+   nextTick(() => {
+    // 根据 id 找不同目标（皮肤展示 / 灵感特性）
+    const target = id === 1
+      ? document.querySelector('.head-title')   // 皮肤展示
+      : document.querySelector('.hero-play-think')  // 灵感特性，换成你实际的 class
 
     if (!target) return
 
@@ -125,6 +173,9 @@ const skinFullName = computed(() => {
     font-size: 14px;
     color: #a59e94;
     margin-right: 70px;
+}
+.showHero:hover{
+  text-decoration:underline;
 }
 .sub-list li .showHero::after{
   content: none;
