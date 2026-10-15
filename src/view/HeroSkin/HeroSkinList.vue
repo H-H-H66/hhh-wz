@@ -87,12 +87,21 @@ const activeHeros = (id)=>{
 }
 const aHerosList = (id)=>{
   HeroItemList.value = id
-   nextTick(() => {
-    // 根据 id 找不同目标（皮肤展示 / 灵感特性）
-    const target = id === 1
-      ? document.querySelector('.head-title')   // 皮肤展示
-      : document.querySelector('.hero-play-think')  // 灵感特性，换成你实际的 class
-
+  nextTick(() => {
+    // // 菜单 id → 对应区块
+    // const sectionMap = {
+    //   1: '.head-title',       // 英雄介绍
+    //   2: '.hero-play-think',  // 玩法思路
+    //   3: '.hero-arts'         // 设计思路
+    // }
+    // const target = document.querySelector(sectionMap[id])
+    // 菜单id → 对应区块
+    const sectionMap = {
+       1: '.head-title',       // 英雄介绍
+       2: '.hero-play-think',  // 玩法思路
+       3: '.hero-arts'         // 设计思路
+    }
+    const target = document.querySelector(sectionMap[id])
     if (!target) return
 
     target.scrollIntoView({

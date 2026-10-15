@@ -138,7 +138,7 @@ const router = createRouter({
           name:'HeroSiteMode',
           component: HeroSiteMode,
           meta:{title:'玩法'}
-        },
+        }, 
         {
           path:'system',
           name:'HeroSiteSystem',

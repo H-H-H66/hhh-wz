@@ -8,6 +8,8 @@ export const HeroItenList = [
     avImage:'/image/HeroItems/lyn/lyn2.jpg',
     mainImage:'/image/HeroItems/lyn/lyn1.jpg',
     proImage:'/image/HeroItems/lyn/lyn3.jpg',
+    ApproImage:'/image/HeroItems/lyn/lyn3.jpg',
+    DesignImage:'/image/HeroItems/lyn/lyn4.webp',
     jobs: ['mage'], // 法师
     // 一段一个字符串，模板会自动分段
     story: [
@@ -26,6 +28,14 @@ export const HeroItenList = [
           '　　铭文推荐：10祸源、10鹰眼、10狩猎，提升穿透与移速，让输出更高明。'
         ]
       }
+    ],
+    DesignStory:[
+      '　　虹湾，海都之外一片新大陆，火墙把神秘雨林一分为二。',
+      '　　那里有位掌握火蛇之力的英雄。虹湾的守护者——卢雅那。',
+      '　　她手中两枚环刃，锋利又灵巧，对敌人毫不含糊；',
+      '　　再加上那炽烈迅猛的火蛇之力，对敌，自然也就有了门道。',
+      '　　世人视虹湾为避而远之的混乱之地，可对卢雅那而言，却是她拼尽全力也要守住的避风港。',
+      '　　若谁敢试探火蛇的地盘，便要亲尝烈焰的规矩。'
     ]
   },
   {
@@ -37,7 +47,8 @@ export const HeroItenList = [
     avImage:'/image/HeroItems/lr/lr2.jpg',
     mainImage:'/image/HeroItems/lr/lr1.jpg',
     proImage:'/image/HeroItems/lr/br.jpg',
-    ApproImage:'/image/HeroItems/lr/lr4.jpg',
+    ApproImage:'/image/HeroItems/lr/br.jpg',
+    DesignImage:'/image/HeroItems/lr/lr4.webp',
     jobs: ['assassin', 'warrior'], // 刺客、战士
     story: [
       '　　昔年，齐天大圣孙悟空率魔种大军打上倒悬天，最终却功败垂成。其肉身被镇于青山之下，一半神魂则被剥离，带回灵山教化，唤为“六耳”',
@@ -63,6 +74,14 @@ export const HeroItenList = [
           '　　铭文推荐10异变、10调和、10鹰眼，高额穿透可大幅提升前期对线强度，调和也能提供较高的容错和续航。'
         ]
       }
+    ],
+    DesignStory:[
+      '　　关于《西游记》里的六耳猕猴和孙悟空，民间和学界一直有很多解读，其中有一种很有代表性的说法，叫做“二心说”。意思是六耳猕猴其实是孙悟空内心另一面的体现。孙悟空常被叫"心猿"，六耳就像是他被压抑的另一颗心——代表着他那份未被驯服的狂野、愤怒和不甘。',
+      '　　《西游记》第五十八回“二心搅乱大乾坤，一体难修真寂灭”，讲述的正是孙悟空与自身二心的争斗。原著中，悟空最终降伏二心，继续踏上修行之路。',
+      '　　在设计六耳时，我们也从"二心说"中汲取了灵感——',
+      '　　心魔六耳作为孙悟空的神魂分化，继承了悟空凶蛮不屈的一面。虽然经历了不同的命运和痛苦，但最终还是与孙悟空重新归一。无论如何变化，孙悟空骨子里那股“敢向命运挥棒”的反抗精神，是永远不会变的。',
+      '　　故事中的“心魔六耳”，将作为孙悟空的“命格”正式推出。我们希望通过这样的方式，让大家看到一个更完整、更有层次的齐天大圣，也进一步丰富王者西游线的内容体验。',
+      
     ]
   },
   {

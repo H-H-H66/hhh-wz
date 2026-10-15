@@ -21,6 +21,8 @@
   <HeroProfile :hero="skinHero"></HeroProfile>
   <!-- 玩法思路 -->
   <HeroApproach :hero="skinHero"></HeroApproach>
+  <!-- 设计思路 -->
+  <HeroDesign :hero="skinHero"></HeroDesign>
   </div>
 </template>
 
@@ -29,6 +31,7 @@ import { computed } from 'vue'
 import HeroSkinList from '../../view/HeroSkin/HeroSkinList.vue'
 import HeroApproach from './HeroApproach.vue'
 import HeroProfile from './HeroProfile.vue'
+import HeroDesign from './HeroDesign.vue'
 import {getHeroById} from '@/utils/HeroItem.js'
 import {useRoute} from 'vue-router'
 const route = useRoute()
