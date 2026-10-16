@@ -21,7 +21,7 @@
               <div class="top-gif">
                 <img src="/image/HeroSite/ssxdt.gif">
               </div>
-              <div class="top-bot">
+              <div class="top-bot" @click="GoShowSkin(2)">
                 <div>
                   <div class="showHero showHeroClo">
                     <span>查看皮肤</span>
@@ -40,7 +40,7 @@
         <div class="cont-bottom">
           <div class="cont-bottom-list">
             <ul>
-              <li class="hero-list" v-for="heroItem in heroNameObj" :key="heroItem.id">
+              <li class="hero-list" v-for="heroItem in heroNameObj" :key="heroItem.id" @click="GoShowSkin(heroItem.id)">
                 <div>
                   <img :src="heroItem.img">
                   <p class="hero-name">{{heroItem.name}}</p>
@@ -60,11 +60,20 @@
 
 <script setup>
 import { ref } from 'vue'
+import {useRouter} from 'vue-router'
+const router = useRouter() 
+const GoShowSkin = (id)=>{
+  router.push({
+    name:'HeroSkinDetail',
+    params:{id:id}
+  })
+}
+// id 与 utils/HeroList.js 的 skinList 保持一致，详情页用 getSkinById(id) 取数据
 const heroNameObj = ref([
-  {id:1,name:'帕恰狗之风-孙膑',desc:"帕恰狗之风-孙膑",skill:"随心逐浪，扬帆起航!",time:"20260924",img:'/image/HeroSite/sb.jpg'},
-  {id:2,name:'旅行日记-亚瑟',desc:"旅行日记-亚瑟",skill:"心有所向，路有所往",time:"20260923",img:'/image/HeroSite/ys.jpg'},
-  {id:3,name:'旅行日记-安琪拉',desc:'旅行日记-安琪拉',skill:'心有所向，路有所往',time:'20260923',img:'/image/HeroSite/aql.jpg'},
-  {id:4,name:'月影弦鸣-伽罗',desc:'月影弦鸣-伽罗',skill:'月华所指，胜利将至',time:'20260929',img:'/image/HeroSite/jl.jpg'},
+  {id:3,name:'帕恰狗之风-孙膑',desc:"帕恰狗之风-孙膑",skill:"随心逐浪，扬帆起航!",time:"20260924",img:'/image/HeroSite/sb.jpg'},
+  {id:4,name:'旅行日记-亚瑟',desc:"旅行日记-亚瑟",skill:"心有所向，路有所往",time:"20260923",img:'/image/HeroSite/ys.jpg'},
+  {id:5,name:'旅行日记-安琪拉',desc:'旅行日记-安琪拉',skill:'心有所向，路有所往',time:'20260923',img:'/image/HeroSite/aql.jpg'},
+  {id:6,name:'月影弦鸣-伽罗',desc:'月影弦鸣-伽罗',skill:'月华所指，胜利将至',time:'20260929',img:'/image/HeroSite/jl.jpg'},
 ])
 </script>
 
@@ -241,6 +250,7 @@ const heroNameObj = ref([
     float: left;
     margin-right: 13px;
     position: relative;
+    cursor: pointer;
     img{
       width: 100%;
     }

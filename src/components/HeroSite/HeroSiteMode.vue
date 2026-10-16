@@ -48,7 +48,7 @@
         <i class="icon-lineR"></i>
       </div>
       <div class="arts-head-btn">
-        <div class="GotoDetail">
+        <div class="GotoDetail" @click="GotoHeroAris(1)">
           <div class="showHero">
             <span>
               查看详情
@@ -76,6 +76,12 @@ const goModeDetail = (id) => {
 const goSystemDetail = (id)=>{
   router.push({
     name:'HeroSystem',
+    params:{id}
+  })
+}
+const GotoHeroAris = (id)=>{
+  router.push({
+    name:'HeroArts',
     params:{id}
   })
 }

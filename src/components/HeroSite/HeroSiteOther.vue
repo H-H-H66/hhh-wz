@@ -11,7 +11,7 @@
             <p class="mask-tit">新玩法-守卫峡谷</p>
             <p class="mask-time">2021.01.06</p>
             <p class="mask-txt">守卫峡谷，全新PVE玩法来了！</p>
-            <p class="mask-more">
+            <p class="mask-more" @click="GotoHeroMode(1)">
               <span>
                 查看详情
                 <i class="more-icon"></i>
@@ -29,7 +29,7 @@
               <p class="mask-time">2020.01.09</p>
             </div>
             <div class="bottom-right">
-              <p class="mask-more">
+              <p class="mask-more" @click="GotoHeroSys(1)">
                 <span>
                   查看详情
                   <i class="more-icon"></i>
@@ -49,7 +49,7 @@
               <div class="mask-time">即将上线</div>
             </div>
             <div class="bottom-right">
-              <p class="mask-more">
+              <p class="mask-more" @click="GotoHeroAris(1)">
                 <span>
                   查看详情
                   <i class="more-icon"></i>
@@ -65,7 +65,26 @@
 </template>
 
 <script setup>
-
+import {useRouter} from 'vue-router'
+const router = useRouter()
+const GotoHeroMode = (id)=>{
+router.push({
+  name:'HemodeDetail',
+  params:{id:id}
+})
+}
+const GotoHeroSys = (id)=>{
+router.push({
+  name:'HeroSystem',
+  params:{id:id}
+})
+}
+const GotoHeroAris = (id)=>{
+router.push({
+  name:'HeroArts',
+  params:{id:id}
+})
+}
 </script>
 
 <style scoped lang="scss">

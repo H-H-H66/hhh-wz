@@ -21,6 +21,8 @@ import HeroSiteArts from '@/components/HeroSite/HeroSiteArts.vue'
 import HeroSkinDetail from '@/view/HeroSkin/HeroSkinDetail.vue'
 import HeroDetail from "@/view/HeroItem/HeroDetail.vue"
 import HemodeDetail from '@/view/HeroMode/HemodeDetail.vue'
+import HeroArts from "@/view/HeroArts/HeroArts.vue"
+import WallPaper from "@/view/WallPaper/wallpaper.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -163,8 +165,20 @@ const router = createRouter({
           name:'HeroSiteArts',
           component: HeroSiteArts,
           meta:{title:'美术优化'}
+        },
+        {
+          path:'arts/:id',
+          name:'HeroArts',
+          component: HeroArts,
+          meta:{title:'美术详情'}
         }
       ]
+    },
+    {
+      path:'/WallPaper',
+      name:'WallPaper',
+      component:WallPaper,
+      meta:{title:'游戏壁纸'}
     }
   ],
 })

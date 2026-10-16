@@ -10,7 +10,7 @@
         <img src="../../../public/image/banner1/moreIPButton.png" />
       </div>
     </div>
-    <div class="login-container-logo" v-if="isHome ||  isHreo">
+    <div class="login-container-logo" v-if="isHome ||  isHreo || isWallPaper">
       <img :src="userStoreInfo.avatar || defaultAvator" />
       <div
         class="login-welcome-2023"
@@ -76,6 +76,7 @@ const DESIGN_H = 900
 
 const isHome = computed(() => route.path === '/home')
 const isHreo = computed(() => route.path === '/hero/hero')
+const isWallPaper = computed(() => route.path === '/WallPaper')
 const headerStyle = computed(() => {
   if (!isHome.value) return {}
   return {
