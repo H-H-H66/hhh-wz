@@ -20,6 +20,7 @@ import HeroSiteSystem from '@/components/HeroSite/HeroSiteSystem.vue'
 import HeroSiteArts from '@/components/HeroSite/HeroSiteArts.vue'
 import HeroSkinDetail from '@/view/HeroSkin/HeroSkinDetail.vue'
 import HeroDetail from "@/view/HeroItem/HeroDetail.vue"
+import HemodeDetail from '@/view/HeroMode/HemodeDetail.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -138,7 +139,13 @@ const router = createRouter({
           name:'HeroSiteMode',
           component: HeroSiteMode,
           meta:{title:'玩法'}
-        }, 
+        },
+        {
+          path:'mode/:id',
+          name:'HemodeDetail',
+          component: HemodeDetail,
+          meta:{title:'玩法详情'}
+        },
         {
           path:'system',
           name:'HeroSiteSystem',

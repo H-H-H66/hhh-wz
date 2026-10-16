@@ -1,5 +1,5 @@
 <template>
-  <div class="arts-listCont">
+  <div class="arts-listCont" v-show="route.name==='HeroSiteMode'">
     <div class="wrap-list">
       <div class="wrap-tit">
         <h3>玩法爆料</h3>
@@ -21,22 +21,58 @@
       </div>
     </div>
   </div>
+   <div class="arts-listCont" v-show="route.name==='HeroSiteSystem'">
+    <div class="wrap-list">
+      <div class="wrap-tit">
+        <h3>系统爆料</h3>
+      </div>
+      <div class="wrap-content">
+        <div class="arts-list news-list">
+          <ul>
+            <li v-for="item in HeroSystem" :key="item.id">
+              <div class="ListMode">
+                <div class="arts-cont">
+                  <p class="arts-name">{{ item.type }}</p>
+                  <p class="arts-desc">{{ item.name }}</p>
+                </div>
+                <p class="arts-time">{{ item.time }}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+   <div class="arts-listCont" v-show="route.name==='HeroSiteArts'">
+    <div class="wrap-list">
+      <div class="wrap-tit">
+        <h3>美术优化爆料</h3>
+      </div>
+      <div class="wrap-content">
+        <div class="arts-list news-list">
+          <ul>
+            <li v-for="item in HeroSkinArits" :key="item.id">
+              <div class="ListMode">
+                <div class="arts-cont">
+                  <p class="arts-name">{{ item.type }}</p>
+                  <p class="arts-desc">{{ item.name }}</p>
+                </div>
+                <p class="arts-time">{{ item.time }}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-const HeroModeList = ref([
-  { id: 1, type: '[限时活动玩法]', name: '玩法-1V1镜像战', time: '20200821' },
-  { id: 2, type: '[限时玩法]', name: '王者模拟战（S1赛季）', time: '20200109' },
-  { id: 3, type: '[限时活动玩法]', name: '新模式-变身大作战（正式服）', time: '20191026' },
-  { id: 4, type: '[限时活动玩法]', name: '新模式-变身大作战', time: '20190923' },
-  { id: 5, type: '[常驻玩法]', name: '新模式-梦境大乱斗', time: '20190627' },
-  { id: 6, type: '[常驻玩法]', name: '新模式-日之塔', time: '20190117' },
-  { id: 7, type: '[常驻玩法]', name: '突围复活模式', time: '20181122' },
-  { id: 8, type: '[常驻玩法]', name: '突围模式', time: '20181101' },
-  { id: 9, type: '[常驻玩法]', name: '契约之战', time: '20180319' },
-  { id: 10, type: '[常驻玩法]', name: '五军对决', time: '20171222' },
-])
+import {useRoute} from 'vue-router'
+import {HeroModeList,HeroSystem,HeroSkinArits} from '@/utils/HeroMode.js'
+
+const route = useRoute()
 </script>
 
 <style lang="scss" scoped>

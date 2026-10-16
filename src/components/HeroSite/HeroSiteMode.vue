@@ -1,10 +1,50 @@
 <template>
-  <div class="HeroSkin">
+  <div class="HeroSkin" v-show="route.name==='HeroSiteMode'">
     <div class="arts-head-conts">
       <div class="arts-head-title">玩法-守卫峡谷</div>
       <div class="arts-head-time">
         <i class="icon-lineL"></i>
         20210106                                          
+        <i class="icon-lineR"></i>
+      </div>
+      <div class="arts-head-btn">
+        <div class="GotoDetail" @click="goModeDetail(1)">
+          <div class="showHero">
+            <span>
+              查看详情
+              <i class="more-icon"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="HeroSkins" v-show="route.name==='HeroSiteSystem'">
+    <div class="arts-head-conts">
+      <div class="arts-head-title">战队赛-全国大赛</div>
+      <div class="arts-head-time">
+        <i class="icon-lineL"></i>
+        20200109                                         
+        <i class="icon-lineR"></i>
+      </div>
+      <div class="arts-head-btn">
+        <div class="GotoDetail">
+          <div class="showHero">
+            <span>
+              查看详情
+              <i class="more-icon"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   <div class="HeroSkinArits" v-show="route.name==='HeroSiteArts'">
+    <div class="arts-head-conts">
+      <div class="arts-head-title">大乔/小乔青白蛇美术优化</div>
+      <div class="arts-head-time">
+        <i class="icon-lineL"></i>
+             20220927                                                                              
         <i class="icon-lineR"></i>
       </div>
       <div class="arts-head-btn">
@@ -24,11 +64,44 @@
 
 <script setup>
 import HeroModeList from './HeroModeList.vue'
+import { useRoute, useRouter } from 'vue-router'
+const route = useRoute()
+const router = useRouter()
+const goModeDetail = (id) => {
+  router.push({
+    name: 'HemodeDetail',
+    params: { id }
+  })
+}
 </script>
 
 <style lang="scss" scoped>
 .HeroSkin{
     background:url('/image/HeroMode/m.webp');
+    width: 100%;
+    max-height: 750px;
+    height: 750px;
+    overflow: hidden;
+    background-color: #000;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center 80px;
+    position: relative;
+}
+.HeroSkins{
+    background:url('/image/HeroSystem/m.webp');
+    width: 100%;
+    max-height: 750px;
+    height: 750px;
+    overflow: hidden;
+    background-color: #000;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center 80px;
+    position: relative;
+}
+.HeroSkinArits{
+    background:url('/image/HeroArts/m.webp');
     width: 100%;
     max-height: 750px;
     height: 750px;
@@ -50,6 +123,24 @@ import HeroModeList from './HeroModeList.vue'
 }
 .HeroSkin:after {
     content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 1));
+}
+.HeroSkins:after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 1));
+}
+.HeroSkinArits::after{
+   content: " ";
     position: absolute;
     left: 0;
     bottom: 0;

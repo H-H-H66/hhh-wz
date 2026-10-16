@@ -1,5 +1,5 @@
 <template>
-  <div class="HeroSiteHome" :class="{ 'is-mode-page': isModePage }">
+  <div class="HeroSiteHome">
   <el-container>
       <el-header class="headerTOP">
         <HeroSiteTop></HeroSiteTop>
@@ -7,7 +7,7 @@
       <el-main class="main">
         <router-view></router-view>
       </el-main>
-      <el-footer class="footer-wrap" :class="{ 'is-fixed-wrap': isModePage }">
+      <el-footer class="footer-wrap">
         <HeroSiteFooter></HeroSiteFooter>
       </el-footer>
     </el-container>
@@ -15,14 +15,9 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 import HeroSiteTop from '@/components/HeroSite/HeroSiteTop.vue'
 // 底部
 import HeroSiteFooter from '@/components/HeroSite/HeroSiteBottom.vue'
-
-const route = useRoute()
-const isModePage = computed(() => route.path === '/HeroSite/mode')
 </script>
 <style scoped lang="scss">
 .HeroSiteHome{
@@ -41,12 +36,8 @@ overflow-y: auto;
   /* Element Plus 默认 overflow:auto，会打断子页面 sticky/吸顶 */
   overflow: visible;
 }
-/* mode：底栏 fixed 后占位，避免内容被挡住 */
 .footer-wrap{
   padding: 0;
   height: auto !important;
-}
-.footer-wrap.is-fixed-wrap{
-  height: 135px !important; /* padding-top 40 + height 95 */
 }
 </style>

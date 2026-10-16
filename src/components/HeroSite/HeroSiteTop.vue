@@ -30,10 +30,10 @@ const selectItem = (item) => {
   router.push(item.path)
 }
 const isSkinDetail = computed(() => {
-  // 仅皮肤/英雄「详情页」顶栏改为占位；mode 是独立页、无 id，顶栏保持 fixed
-  return /^\/HeroSite\/(skin|hero)\/.+/.test(route.path)
+  // 皮肤/英雄/玩法详情：顶栏占位；列表页（含 /mode）顶栏保持 fixed
+  return /^\/HeroSite\/(skin|hero|mode)\/.+/.test(route.path)
 })
-// 选中态：详情页 /HeroSite/skin/1 也要高亮「皮肤」
+// 选中态：详情页 /HeroSite/mode/1 也要高亮「玩法」
 const HeroSite = computed(() => {
   const match = [...HeroSiteItem.value]
     .sort((a, b) => b.path.length - a.path.length)

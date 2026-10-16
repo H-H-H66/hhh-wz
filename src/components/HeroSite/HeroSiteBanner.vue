@@ -125,7 +125,8 @@ const HeroSiteItem = ref([
 <style scoped lang="scss">
 .HeroBanner{
   width: 100%;
-  margin-top: 50px;
+  /* 顶栏 fixed 高 80px，留出空隙避免轮播贴导航 */
+  margin-top: 100px;
 
   /* 每张轮播铺满，不留卡片缝隙 */
   .bannerHero{

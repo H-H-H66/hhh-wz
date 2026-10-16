@@ -1,5 +1,5 @@
 <template>
-  <div class="footer_ied" :class="{ 'is-fixed': isFixedFooter }">
+  <div class="footer_ied">
     <div class="wrap_ied">
       <p>
         <a href="">腾讯互动娱乐</a>  | <a href="">服务条款</a> | <a href="">腾讯游戏隐私保护指引</a> | <a href="">腾讯游戏儿童隐私保护指引</a> | <a href="">广告服务</a> | <a href="">腾讯游戏招聘</a> | <a href="">腾讯游戏客服</a> | <a href="">游戏地图</a> | <a href="">成长守护平台</a> | <a href="">商务合作</a> | <a href="">商务合作</a>
@@ -15,12 +15,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-
-const route = useRoute()
-// mode 为独立页（无 id），底栏固定在视口底部
-const isFixedFooter = computed(() => route.path === '/HeroSite/mode')
 </script>
 
 <style lang="scss" scoped>
@@ -39,12 +33,5 @@ const isFixedFooter = computed(() => route.path === '/HeroSite/mode')
       color: #999;
       text-decoration: none;
     }
-}
-.footer_ied.is-fixed{
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 998;
 }
 </style>
