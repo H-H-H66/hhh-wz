@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => {
      vue({
   template: {
     compilerOptions: {
-      isCustomElement: (tag) => tag === 'font',
+      isCustomElement: (tag) =>  ['font', 'center'].includes(tag),
     },
   },
 }),

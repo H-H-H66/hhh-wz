@@ -30,8 +30,8 @@ const selectItem = (item) => {
   router.push(item.path)
 }
 const isSkinDetail = computed(() => {
-  // 皮肤/英雄/玩法详情：顶栏占位；列表页（含 /mode）顶栏保持 fixed
-  return /^\/HeroSite\/(skin|hero|mode)\/.+/.test(route.path)
+  // 皮肤/英雄/玩法/系统详情：顶栏占位；列表页顶栏保持 fixed
+  return /^\/HeroSite\/(skin|hero|mode|system)\/.+/.test(route.path)
 })
 // 选中态：详情页 /HeroSite/mode/1 也要高亮「玩法」
 const HeroSite = computed(() => {

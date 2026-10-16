@@ -14,7 +14,7 @@ import HeroSite from "@/view/LeakSite/HeroSite.vue"
 import HeroSkin from '@/view/HeroSkin/HeroSkin.vue'
 import HeroSiteHome from '@/components/HeroSite/HeroSiteHome.vue'
 import HeroNewItem from "@/view/HeroItem/HeroNewItem.vue"
-import HeroSiteHero from '@/components/HeroSite/HeroSiteHero.vue'
+import HeroSystem from "@/view/HeroSystem/HeroSystem.vue"
 import HeroSiteMode from '@/components/HeroSite/HeroSiteMode.vue'
 import HeroSiteSystem from '@/components/HeroSite/HeroSiteSystem.vue'
 import HeroSiteArts from '@/components/HeroSite/HeroSiteArts.vue'
@@ -151,6 +151,12 @@ const router = createRouter({
           name:'HeroSiteSystem',
           component: HeroSiteSystem,
           meta:{title:'系统'}
+        },
+        {
+          path:'system/:id',
+          name:'HeroSystem',
+          component: HeroSystem,
+          meta:{title:'系统详情'}
         },
         {
           path:'arts',

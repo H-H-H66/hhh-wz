@@ -10,10 +10,11 @@
       <h1>新玩法-守卫峡谷</h1>
     </div>
  </div>
+ <HemodeDetail></HemodeDetail>
 </template>
 
 <script setup>
-
+import HemodeDetail from "./Hemodecontent.vue"
 </script>
 
 <style lang="scss" scoped>
