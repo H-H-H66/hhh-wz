@@ -1,13 +1,15 @@
 <template>
-  <bannerTop></bannerTop>
-  <div class="header-container-2023" style="width:100%">
-     <img class="banner-image-2023" src="/image/WallPaper/bannerImage.webp" style="width:100%;height:310px"></img>
-     <img class="detail-button-2023" 
-     src="/image/WallPaper/detailButton.png" 
-     style="width:196.667px;height:50px;left:125px;top:210.333px"
-     ></img>
+  <div class="wallpaper-page">
+    <bannerTop></bannerTop>
+    <div class="header-container-2023" style="width:100%">
+       <img class="banner-image-2023" src="/image/WallPaper/bannerImage.webp" style="width:100%;height:310px"></img>
+       <img class="detail-button-2023" 
+       src="/image/WallPaper/detailButton.png" 
+       style="width:196.667px;height:50px;left:125px;top:210.333px"
+       ></img>
+    </div>
+    <wallConcent></wallConcent>
   </div>
-  <wallConcent></wallConcent>
 </template>
 
 <script setup>
@@ -16,6 +18,12 @@ import wallConcent from "./wallpaperContent.vue"
 </script>
 
 <style lang="scss" scoped>
+.wallpaper-page {
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 .header-container-2023{
   background-color: #191919;
   position:relative;
